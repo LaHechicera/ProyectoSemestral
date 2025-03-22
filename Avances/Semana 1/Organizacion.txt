@@ -1,0 +1,11 @@
+1. Función APP Huevito original
+	- Pantalla de inicio con todos los huevitos que se pueden hacer
+	- Cada función de los 5 ítem tiene descripción, muestra temporizador, botones de 	inicio, pausa y reinicio
+	- Posee botón de "Inicio" que redirige a pantalla principal
+
+2. Modificación de APP a nuevo proyecto
+	- Pantalla de inicio que muestre 4 ítems de comidas, mas ítem de historial 	alimenticio
+	- Cada ítem tendrá pantalla especial según el alimento escogido
+	- Al seleccionar botón de inicio de temporizador, se registrara en BD la siguiente 	información:  tipo de alimento, tiempo elegido, fecha del registro y veces que se 	selecciono
+	- Crear conexión a base de datos
+	- Diseño de app será realizada una vez que la aplicación sea funcional

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Huevito Cocido</title>
+  <link rel="stylesheet" href="style.css" />
+  <nav>
+    <a href="index.html">Inicio</a>
+</nav>
+</head>
+<body>
+  <h1>Huevito Cocido</h1>
+  <p>Usted si le sabe al huevito a la copa</p>
+  <p>13 minutos de cocción</p>
+  <div id="timer">00:13:00</div>
+  <button id="startButton">Inicio</button>
+  <button id="pauseButton">Pausa</button>
+  <button id="resetButton">Reinicio</button>
+  <script type="module">
+    import { startTimer, pauseTimer, resetTimer } from './timer.js';
+
+    document.getElementById('startButton').addEventListener('click', () => {
+      startTimer(0, 13, 0); // Establece el tiempo inicial aquí (0 horas, 15 minutos, 0 segundos)
+    });
+
+    document.getElementById('pauseButton').addEventListener('click', pauseTimer);
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+      resetTimer(0, 13, 0); // Restablece el tiempo inicial aquí
+    });
+  </script>
+</body>
+</html>

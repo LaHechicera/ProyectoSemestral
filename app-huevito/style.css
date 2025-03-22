@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'CafeFuente';
+    src: url('./Fuente/LTMakeup-Regular.otf');
+}
+body {
+    font-family: 'CafeFuente', sans-serif;
+    background-color: #ffd000f5;
+  }
+nav {
+    background-color: #252525;
+    overflow: hidden;
+  }
+nav a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+/*nav a:hover {
+    background-color: #91891b;
+    color: black;
+  }
+nav a.active {
+    background-color: #4CAF50;
+    color: rgb(163, 150, 30);
+  }
+
+

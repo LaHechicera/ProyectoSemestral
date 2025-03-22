@@ -1,0 +1,116 @@
+</head>
+<body>
+  <h1>Temporizador de Huevitos</h1>
+  <nav>
+    <a href="#home">Inicio</a>
+</nav>
+  <p>Aqui te ayudare a hacer huevitos a la copa</p>
+  <nav>
+    <a href="#" onclick="LoadPage('suave.html')">Suave</a>
+    <a href="#intermedio">Medio</a>
+    <a href="#cocido">Cocido</a>
+    <a href="#scocido">Super cocido</a>
+  </nav>
+</body>
+</html>
+
+-------------
+-------------------------------------
+Aqui el codigo del timer.js
+
+let seconds;
+let minutes;
+let hours;
+let timer;
+
+function updateTimer() {
+  seconds++;
+  if (seconds === 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes === 60) {
+      minutes = 0;
+      hours++;
+    }
+  }
+
+  document.getElementById('timer').innerText =
+    (hours < 10 ? '0' : '') + hours + ':' +
+    (minutes < 10 ? '0' : '') + minutes + ':' +
+    (seconds < 10 ? '0' : '') + seconds;
+}
+
+function startTimer(startHours, startMinutes, startSeconds) {
+  hours = startHours;
+  minutes = startMinutes;
+  seconds = startSeconds;
+  timer = setInterval(updateTimer, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+}
+
+export { startTimer, stopTimer };
+
+
+-------------------------------------------------
+
+Aqui el cambio de codigo en pagina html para cada pagina de huevitos
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nombre de tu Página</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    /* Tus estilos aquí */
+  </style>
+  <script type="module" src="timer.js"></script>
+</head>
+<body>
+  <h1>Nombre de tu Página</h1>
+  <div id="timer">00:00:00</div>
+  <script type="module">
+    import { startTimer } from './timer.js';
+    window.onload = () => startTimer(0, 15, 0); // Aquí estableces el tiempo inicial (0 horas, 15 minutos, 0 segundos)
+  </script>
+</body>
+</html>
+
+
+------------------------------
+
+Aqui se le agrega el boton al temporizador 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nombre de tu Página</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    /* Tus estilos aquí */
+  </style>
+  <script type="module" src="timer.js"></script>
+</head>
+<body>
+  <h1>Nombre de tu Página</h1>
+  <div id="timer">00:00:00</div>
+  <button id="startButton">Iniciar Temporizador</button>
+  <script type="module">
+    import { startTimer } from './timer.js';
+    
+    document.getElementById('startButton').addEventListener('click', () => {
+      startTimer(0, 15, 0); // Establece el tiempo inicial aquí (0 horas, 15 minutos, 0 segundos)
+    });
+  </script>
+</body>
+
+
+
+
+---------

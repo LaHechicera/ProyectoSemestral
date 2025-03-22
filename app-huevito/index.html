@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App Huevito</title>
+  <link rel="stylesheet" href="indexstyle.css" />
+  <script>
+    const { ipcRenderer} = require('electron');
+
+    function loadPage(page) {
+        console.log('Loading page: ', page);
+        ipcRenderer.send('navigate', page);
+    }
+  </script>
+</head>
+<body>
+  <h1>Temporizador de Huevitos</h1>
+  <p>Aqui te ayudare a hacer huevitos a la copa</p>
+  <p>Elige el huevito que haras y sabrás cuanto tiempo deberás dejarlo hervir</p> 
+  <nav>
+    <a href="suave.html">Suave</a>
+    <a href="medio.html">Medio</a>
+    <a href="cocido.html">Cocido</a>
+    <a href="scocido.html">Super Cocido</a>
+    <a href="test.html">Prueba</a>
+  </nav>
+</body>
+</html>
+

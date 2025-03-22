@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="timer.js"></script>
+  <nav>
+    <a href="index.html">Inicio</a>
+</nav>
+</head>
+<body>
+  <h1>Página de Prueba</h1>
+  <p>Esta es una página de prueba.</p>
+  <div id="timer">00:01:00</div> 
+  <button id="startButton">Inicio</button>
+  <button id="pauseButton">Pausa</button>
+  <button id="resetButton">Reinicio</button>
+  <script type="module">
+    import { startTimer, pauseTimer, resetTimer } from './timer.js';
+
+    document.getElementById('startButton').addEventListener('click', () => {
+      startTimer(0, 1, 0); // Establece el tiempo inicial aquí (0 horas, 15 minutos, 0 segundos)
+    });
+
+    document.getElementById('pauseButton').addEventListener('click', pauseTimer);
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+      resetTimer(0, 1, 0); // Restablece el tiempo inicial aquí
+    });
+  </script>
+</body>
+</html>
