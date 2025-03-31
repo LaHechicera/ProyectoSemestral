@@ -1,4 +1,4 @@
-Crearemos una aplicación dedicada a ser un temporizador de cocina de alimentos. Para esto utilizaremos el framework de Electron para poder trabajar con:
+Crearemos una aplicación estilo juego de deciciones, el cual estara dividido en "actos" los que decidiran el destino del usuario que juegue, al final de su recorrido saldra una pantalla con sus estadisticas y las deciciones tomadas durante su aventura. Para esto utilizaremos el framework de Electron para poder trabajar con:
 
 - HTML y CSS (Frontend)
 - JavaScript (Backend)
