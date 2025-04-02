@@ -6,3 +6,4 @@ Crearemos una aplicación estilo juego de deciciones, el cual estara dividido en
 
 Antes de comenzar a elaborar nuestro proyecto, estudiaremos las metodologias de Scrum y Kanban, para basarnos en la metodologia que sea mas pertinente al proyecto.
 
+Creamos un archivo .gitignore para que ignore las carpetas de node_modules, package-lock-json y package.json que no permitian subir por completo los archivos de la apliación.
