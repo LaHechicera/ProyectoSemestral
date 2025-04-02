@@ -1,0 +1,4 @@
+Archivo_para_ignorar_carpetas
+/node_modules
+package-lock.json
+package.json
