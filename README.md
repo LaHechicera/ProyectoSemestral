@@ -9,3 +9,5 @@ Antes de comenzar a elaborar nuestro proyecto, estudiaremos las metodologias de 
 Creamos un archivo .gitignore para que ignore las carpetas de node_modules, package-lock-json y package.json que no permitian subir por completo los archivos de la apliación.
 
 A su ve confirmamos que se pueda iniciar la aplicacion en los computadores.
+
+kjasjlkkljaskljafkla
