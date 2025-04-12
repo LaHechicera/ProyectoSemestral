@@ -1,0 +1,248 @@
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (master)
+$ git switch Strix
+Switched to branch 'Strix'
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$ git add .
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$ git commit -m "HTML de Historia Elfo funcional"
+[Strix d126abf] HTML de Historia Elfo funcional
+ 27 files changed, 324 insertions(+)
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque2.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque3.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque4.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque1_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque2_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque3_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/MuerteBosque1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Cueva1.html
+ create mode 100644 app/HistoriaElfo/Cueva/MuerteCueva2.html
+ create mode 100644 app/HistoriaElfo/Cueva/Ruinas1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Sierpe.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Caminos.html
+ create mode 100644 app/HistoriaElfo/Cueva2/MuerteCaminos3.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Ruinas2.html
+ create mode 100644 app/HistoriaElfo/Cueva2/RunasF.html
+ create mode 100644 app/HistoriaElfo/Final/Agradecimiento.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1_2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo2.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Biblioteca.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo1.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo2.html
+ create mode 100644 app/HistoriaElfo/wakeupH.html
+ create mode 100644 app/HistoriaElfo/wakeupM.html
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$ git push origin Strix
+Enumerating objects: 39, done.
+Counting objects: 100% (39/39), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (37/37), done.
+Writing objects: 100% (37/37), 8.37 KiB | 1.20 MiB/s, done.
+Total 37 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), completed with 2 local objects.
+To https://github.com/LaHechicera/ProyectoSemestral.git
+   d90ae73..d126abf  Strix -> Strix
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$ git checkout master
+M       app/index.html
+D       app/test.html
+M       "app/\303\261au.txt"
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (master)
+$ git pull origin master
+remote: Enumerating objects: 47, done.
+remote: Counting objects: 100% (46/46), done.
+remote: Compressing objects: 100% (39/39), done.
+remote: Total 41 (delta 7), reused 34 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (41/41), 10.77 KiB | 81.00 KiB/s, done.
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+   c92315c..1539f62  master     -> origin/master
+Updating c92315c..1539f62
+Fast-forward
+ app/HistoriaElfo/Bosque/Bosque1.html                      | 13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque2.html                      | 13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque3.html                      | 12 ++++++++++++
+ app/HistoriaElfo/Bosque/Bosque4.html                      | 13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque1_2.html                   | 12 ++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque2_2.html                   | 13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque3_2.html                   | 11 +++++++++++
+ app/HistoriaElfo/Bosque2/MuerteBosque1.html               | 10 ++++++++++
+ app/HistoriaElfo/Cueva/Cueva1.html                        | 14 ++++++++++++++
+ app/HistoriaElfo/Cueva/MuerteCueva2.html                  | 11 +++++++++++
+ app/HistoriaElfo/Cueva/Ruinas1.html                       | 12 ++++++++++++
+ app/HistoriaElfo/Cueva/Sierpe.html                        | 13 +++++++++++++
+ app/HistoriaElfo/Cueva2/Caminos.html                      | 12 ++++++++++++
+ app/HistoriaElfo/Cueva2/MuerteCaminos3.html               | 11 +++++++++++
+ app/HistoriaElfo/Cueva2/Ruinas2.html                      | 13 +++++++++++++
+ app/HistoriaElfo/Cueva2/RunasF.html                       | 13 +++++++++++++
+ app/HistoriaElfo/Final/Agradecimiento.html                |  8 ++++++++
+ app/HistoriaElfo/Final/FinalBueno1.html                   | 10 ++++++++++
+ app/HistoriaElfo/Final/FinalBueno1_2.html                 | 11 +++++++++++
+ app/HistoriaElfo/Final/FinalBueno2.html                   | 14 ++++++++++++++
+ app/HistoriaElfo/Final/FinalMalo1.html                    | 12 ++++++++++++
+ app/HistoriaElfo/Final/FinalMalo2.html                    | 13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Biblioteca.html                   | 12 ++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo1.html                      | 13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo2.html                      | 11 +++++++++++
+ app/HistoriaElfo/wakeupH.html                             | 12 ++++++++++++
+ app/HistoriaElfo/wakeupM.html                             | 12 ++++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html     | 13 +++++++++++++
+ .../AfuerasReino/AfuerasDelReinoHombre.html               | 10 ++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html | 10 ++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html   | 13 +++++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html   | 12 ++++++++++++
+ app/HistoriaHumano/AfuerasReino/FinActo1.html             | 12 ++++++++++++
+ app/HistoriaHumano/Aldea/Aldea1.html                      | 13 +++++++++++++
+ app/HistoriaHumano/Aldea/Aldea2.html                      | 11 +++++++++++
+ app/HistoriaHumano/Bosque/Bosque1.html                    | 15 +++++++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP1.html                  | 11 +++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP2.html                  | 12 ++++++++++++
+ app/HistoriaHumano/FinAventura.html                       | 13 +++++++++++++
+ app/HistoriaHumano/GameOverPantano.html                   | 13 +++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a1.html"             | 15 +++++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a2.html"             | 13 +++++++++++++
+ .../Monta\303\261a/AfuerasMonta\303\261a.html"            | 11 +++++++++++
+ "app/HistoriaHumano/Monta\303\261a/cueva.html"            | 13 +++++++++++++
+ app/HistoriaHumano/MuerteCongelada.html                   | 11 +++++++++++
+ app/HistoriaHumano/Reino/Historia1Hombre.html             | 12 ++++++++++++
+ app/HistoriaHumano/Reino/Historia1Mujer.html              | 12 ++++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPHombre.html          | 10 ++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPMujer.html           | 10 ++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html    | 14 ++++++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html    | 11 +++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html  | 12 ++++++++++++
+ app/suave.html                                            |  2 +-
+ 53 files changed, 627 insertions(+), 1 deletion(-)
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque2.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque3.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque4.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque1_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque2_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque3_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/MuerteBosque1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Cueva1.html
+ create mode 100644 app/HistoriaElfo/Cueva/MuerteCueva2.html
+ create mode 100644 app/HistoriaElfo/Cueva/Ruinas1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Sierpe.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Caminos.html
+ create mode 100644 app/HistoriaElfo/Cueva2/MuerteCaminos3.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Ruinas2.html
+ create mode 100644 app/HistoriaElfo/Cueva2/RunasF.html
+ create mode 100644 app/HistoriaElfo/Final/Agradecimiento.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1_2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo2.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Biblioteca.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo1.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo2.html
+ create mode 100644 app/HistoriaElfo/wakeupH.html
+ create mode 100644 app/HistoriaElfo/wakeupM.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoHombre.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/FinActo1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea2.html
+ create mode 100644 app/HistoriaHumano/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP2.html
+ create mode 100644 app/HistoriaHumano/FinAventura.html
+ create mode 100644 app/HistoriaHumano/GameOverPantano.html
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a1.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a2.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/AfuerasMonta\303\261a.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/cueva.html"
+ create mode 100644 app/HistoriaHumano/MuerteCongelada.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Hombre.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Mujer.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPHombre.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPMujer.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (master)
+$ git checkout Strix
+M       app/index.html
+D       app/test.html
+M       "app/\303\261au.txt"
+Switched to branch 'Strix'
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$ git pull origin master
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+Updating d126abf..1539f62
+Fast-forward
+ Avances/Semana 4/Sem 4.txt                                |  5 +++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html     | 13 +++++++++++++
+ .../AfuerasReino/AfuerasDelReinoHombre.html               | 10 ++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html | 10 ++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html   | 13 +++++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html   | 12 ++++++++++++
+ app/HistoriaHumano/AfuerasReino/FinActo1.html             | 12 ++++++++++++
+ app/HistoriaHumano/Aldea/Aldea1.html                      | 13 +++++++++++++
+ app/HistoriaHumano/Aldea/Aldea2.html                      | 11 +++++++++++
+ app/HistoriaHumano/Bosque/Bosque1.html                    | 15 +++++++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP1.html                  | 11 +++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP2.html                  | 12 ++++++++++++
+ app/HistoriaHumano/FinAventura.html                       | 13 +++++++++++++
+ app/HistoriaHumano/GameOverPantano.html                   | 13 +++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a1.html"             | 15 +++++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a2.html"             | 13 +++++++++++++
+ .../Monta\303\261a/AfuerasMonta\303\261a.html"            | 11 +++++++++++
+ "app/HistoriaHumano/Monta\303\261a/cueva.html"            | 13 +++++++++++++
+ app/HistoriaHumano/MuerteCongelada.html                   | 11 +++++++++++
+ app/HistoriaHumano/Reino/Historia1Hombre.html             | 12 ++++++++++++
+ app/HistoriaHumano/Reino/Historia1Mujer.html              | 12 ++++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPHombre.html          | 10 ++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPMujer.html           | 10 ++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html    | 14 ++++++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html    | 11 +++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html  | 12 ++++++++++++
+ app/suave.html                                            |  2 +-
+ 27 files changed, 308 insertions(+), 1 deletion(-)
+ create mode 100644 Avances/Semana 4/Sem 4.txt
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoHombre.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/FinActo1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea2.html
+ create mode 100644 app/HistoriaHumano/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP2.html
+ create mode 100644 app/HistoriaHumano/FinAventura.html
+ create mode 100644 app/HistoriaHumano/GameOverPantano.html
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a1.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a2.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/AfuerasMonta\303\261a.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/cueva.html"
+ create mode 100644 app/HistoriaHumano/MuerteCongelada.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Hombre.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Mujer.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPHombre.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPMujer.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html
+
+StrixC@PC-Strix MINGW64 ~/Desktop/ProyectoSemestral/app (Strix)
+$
