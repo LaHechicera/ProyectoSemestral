@@ -1,11 +1,17 @@
 @font-face {
-    font-family: 'CafeFuente';
-    src: url('./Fuente/LTMakeup-Regular.otf');
+  font-family: 'CafeFuente';
+  src: url('./Fuente/LTMakeup-Regular.otf');
 }
+
+@font-face {
+font-family: 'God of War';
+src: url('./Fuente/GODOFWAR.TTF');
+}
+
 body {
-    font-family: 'CafeFuente', sans-serif;
-    background-color: #ffd000f5;
-  }
+  font-family: 'God of War', sans-serif;
+  background-color: #ffd000f5;
+}
 nav {
     background-color: #252525;
     overflow: hidden;
