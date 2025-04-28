@@ -10,7 +10,9 @@
 
 body {
     font-family: 'God of War', sans-serif;
-    background-color: #ffd000f5;
+    background-image: url('./Imagenes-Figma/escoger\ pj.jpeg');
+    background-size: cover;
+    height: 400px;
   }
 nav {
     background-color: #252525;
