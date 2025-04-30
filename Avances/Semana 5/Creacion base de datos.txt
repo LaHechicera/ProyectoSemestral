@@ -1,0 +1,14 @@
+Carpeta bd para establecer conexión con MySQL
+
+1. Se crea el archivo database.js para hacer las consultas en MySQL.
+2. Se crea una librería para conectarse a una base de datos desde Node.js, en caso de no funcionar instalar el paquete de datos en la terminal: npm install MySQL.
+
+Archivo script.js
+
+ubicado en la carpeta raíz app para las desiciones enviadas al Backend, capturando la decisión y ubicación de cada hisotira suando fletch().
+
+Carpeta servidor para archivos con la lógica de almacenar datos.
+1. Archivo server.js: actúa como servidor para recibir datos desde script.js y guardarlos en MySQL.
+2. Archivo registro.js: contiene la lógica para guardar desciciones en la db y crea la tabla del proyecto.
+
+3. instalar para que node.js reciba las decisiones y las guarde en MySQL: npm install express
