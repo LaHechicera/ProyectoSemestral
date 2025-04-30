@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'God of War';
+    src: url('../Fuentes/GODOFWAR.TTF');
+    }
+
+body {
+    font-family: 'God of War', sans-serif;
+    filter: drop-shadow(1px 1px 3px white);
+}
+
+.contenedor2 {
+    background-image: url('../ImagenesFigmaElfo/ImagenDialogo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 38px;
+    text-align: center;
+}
+
