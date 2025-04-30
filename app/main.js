@@ -38,3 +38,14 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+//Cerrar conexion de BD
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+//Generar tabla en la BD
+const { crearTablaSiNoExiste, guardarDecision } = require('./servidor/registro');
+crearTablaSiNoExiste();
+guardarDecision();
