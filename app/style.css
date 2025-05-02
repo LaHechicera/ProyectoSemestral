@@ -24,7 +24,7 @@ body p{
 filter: drop-shadow(1px 1px 3px white);
 }
 
-nav button{
+body button{
 background-color: #252525;
 color: white;
 padding: 10px 20px;
