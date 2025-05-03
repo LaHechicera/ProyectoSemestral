@@ -19,15 +19,26 @@ function crearTablaSiNoExiste() {
     });
 }
 
-function guardarDecision(usuarioId, decision, ubicacion, tiempoJuego) {
-    const query = 'INSERT INTO decisiones (usuario_id, decision, ubicacion, tiempo_juego) VALUES (?, ?, ?, ?)';
+// Función para guardar decisión y luego redirigir
+function registrarDecision(usuarioId, decision, url) {
+    console.log("Guardando decisión:", decision);
+
+    const ubicacion = "Historia1Hombre"; // Puedes ajustarlo según la página
+    const tiempoJuego = Date.now(); // Marca de tiempo
+
+    const query = 'INSERT INTO decisiones (usuario_id, decision, ubicacion, tiempo_lectura) VALUES (?, ?, ?, ?)';
+
     connection.query(query, [usuarioId, decision, ubicacion, tiempoJuego], (err, results) => {
         if (err) {
             console.error('Error al guardar decisión:', err);
         } else {
             console.log('Decisión guardada con ID:', results.insertId);
+
+            // Aquí puedes confirmar que la redirección realmente se ejecuta
+            console.log("Redirigiendo a:", url);
+            window.location.href = url;
         }
     });
 }
 
-module.exports = { crearTablaSiNoExiste, guardarDecision };
+module.exports = { crearTablaSiNoExiste, registrarDecision };
