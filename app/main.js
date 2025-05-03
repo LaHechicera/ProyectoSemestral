@@ -46,6 +46,6 @@ app.on('window-all-closed', () => {
   }
 });
 //Generar tabla en la BD
-const { crearTablaSiNoExiste, guardarDecision } = require('./servidor/registro');
+const { crearTablaSiNoExiste, registrarDecision } = require('./servidor/registro');
 crearTablaSiNoExiste();
-guardarDecision();
+registrarDecision();

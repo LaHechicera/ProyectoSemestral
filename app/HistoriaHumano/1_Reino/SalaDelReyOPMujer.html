@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Historia1Hombre</title>
+        <script>
+            function registrarDecision( texto, destino) {
+                console.log(" Texto:", texto, "Destino:", destino); // Aquí podrías guardar la decisión, por ejemplo en localStorage o enviarla a un servidor
+                window.location.href = destino; // Redirige a la nueva página
+            }
+            
+        </script>
+    </head>
     <title>SalaDelReyOPMujer</title>
     <body>
         <h1>Sala del rey</h1>
         <p>El rey te escucha y acepta tu petición, pero te escoltan hacia la salida sin provisiones, pues la política del reino dice que las provisiones y armamentos son propiedad del rey y nada de eso puede salir.</p>
         <p></p>
-        <button onclick="window.location.href='../2_AfuerasReino/AfuerasDelReino1.html'">Continuar</button>
+        <button onclick="registrarDecision('', '../2_AfuerasReino/AfuerasDelReino1.html')">Continuar</button>
     </body>
 </html>
