@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Historia1Hombre</title>
+        <script>
+            function registrarDecision( texto, destino) {
+                console.log(" Texto:", texto, "Destino:", destino); // Aquí podrías guardar la decisión, por ejemplo en localStorage o enviarla a un servidor
+                window.location.href = destino; // Redirige a la nueva página
+            }
+            
+        </script>
+    </head>
     <title>Historia1Mujer</title>
     <body>
         <h1>Eres una soldada</h1>
         <p>Eres una guerrera y te camuflas para luchar, al ser mujer no se te permite ser soldado, por lo que tienes pensado irte del reino a otro donde puedas ser libremente una guerrera. En un acto descuidado mientras te cambiabas, un soldado te ve sin casco y descubre que eres una mujer, y en tu intento de safar te acercas a él y lo dejas inconciente con tu espada, pero usaste mucha fuerza y ya no responde.</p>
         <p>Tu decisión será:<p>
-        <button onclick="window.location.href='SalaDelReyOPMujer.html'">Ir donde el rey: Persuadirlo con que necesitas salir del reino</button>
+        <button onclick="registrarDecision('', 'SalaDelReyOPMujer.html')">Ir donde el rey: Persuadirlo con que necesitas salir del reino</button>
         <p></p>
-        <button onclick="window.location.href='../AfuerasReino/AfuerasDelReinoMujer.html'">Vas a tu hogar a buscar todo lo necesario para escapar del reino</button>
+        <button onclick="registrarDecision('', '../2_AfuerasReino/AfuerasDelReinoMujer.html')">Vas a tu hogar a buscar todo lo necesario para escapar del reino</button>
     </body>
 </html>
