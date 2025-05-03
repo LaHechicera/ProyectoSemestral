@@ -9,12 +9,8 @@
 }
 
 body {
-    font-family: 'God of War', sans-serif;
-    background-image: url('./ImagenesFigmaElfo/escogerPj.jpeg');
-    background-size: cover; /* Hace que la imagen cubra todo el fondo */
-    background-repeat: no-repeat; /*hace que no se repita el fondo*/
-  }
-
+  font-family: 'God of War', sans-serif;
+}
 body h1{
   filter: drop-shadow(1px 1px 3px white);
   display: flex;
