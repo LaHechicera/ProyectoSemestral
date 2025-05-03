@@ -19,6 +19,7 @@ body {
   
 /*Aqui estilo de cuadro de dialogo cafe*/
 div h1{
+    font-family: 'God of War', sans-serif;
     background-image: url('../ImagenesFigmaElfo/cuadroDialogoArriba.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -27,7 +28,7 @@ div h1{
     display: inline-block; /*Se ajusta al texto*/
     padding: 50px;
     text-align: left;
-    font-size: 20px; /*Tamaño texto*/
+    font-size: 25px; /*Tamaño texto*/
     color: #ffffff;
     font-weight: normal; /*Dejamos la fuente sin negrita*/
     padding-bottom: 9px; /*Hace que el texto se alinie con la imagen*/
@@ -43,6 +44,7 @@ div h1{
     display: inline-block;
     padding: 20px;
     text-align: center;
+    font-size: 18px;
 }
 
 /*Hace que esten ams cerca*/
