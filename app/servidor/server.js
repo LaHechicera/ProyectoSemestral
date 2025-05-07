@@ -1,22 +1,43 @@
 const express = require('express');
-const connection = require('../db/database');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const { registrarUsuario } = require('./registro');
+const { obtenerUsuarios } = require('../db/database'); // Importar función
 
 const app = express();
-app.use(express.json());
 
-app.post('/guardar-decision', (req, res) => {
-    const { usuario_id, decision, ubicacion } = req.body;
+app.use(cors());
+app.use(bodyParser.json());
 
-    const query = 'INSERT INTO decisiones (usuario_id, decision, ubicacion) VALUES (?, ?, ?)';
-    connection.query(query, [usuario_id, decision, ubicacion], (err, results) => {
+// Verificar estado de la base de datos al iniciar el servidor
+obtenerUsuarios((err, usuarios) => {
+    if (err) {
+        console.log('Modo offline activado: La aplicación funcionará sin conexión a MySQL.');
+    } else {
+        console.log('Base de datos activa.');
+    }
+});
+
+app.post('/registrar-usuario', (req, res) => {
+    const { nombre } = req.body;
+    if (!nombre || !/^[a-zA-Z0-9_ ]+$/.test(nombre)) {
+        return res.status(400).json({ mensaje: 'Nombre inválido.' });
+    }
+
+    registrarUsuario(nombre, (err, usuarioId) => {
         if (err) {
-            console.error('Error al guardar decisión:', err);
-            res.status(500).send('Error en el servidor');
+            res.status(500).json({ mensaje: 'Error al registrar usuario.' });
         } else {
-            console.log('Decisión guardada con ID:', results.insertId);
-            res.send('Decisión guardada');
+            res.json({ mensaje: `Usuario registrado: ${usuarioId}`, usuarioId });
         }
     });
 });
 
-app.listen(3000, () => console.log('Servidor corriendo en http://localhost:3000'));
+app.get('/usuarios', (req, res) => {
+    obtenerUsuarios((err, usuarios) => {
+        if (err) return res.status(500).json({ mensaje: 'Error al obtener usuarios.' });
+        res.json(usuarios);
+    });
+});
+
+module.exports = app;
