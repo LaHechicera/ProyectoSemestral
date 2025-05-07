@@ -1,23 +1,124 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla de Inicio</title>
-    <link rel="stylesheet" href="usuariocss.css" />
-    <style>
-        body{
-            background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla de Inicio</title>
+  <link rel="stylesheet" href="usuariocss.css" />
+  <style>
+    body {
+      background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    /* Estilos de la ventana emergente */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 20% auto;
+      padding: 20px;
+      width: 50%;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .modal button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h2>Ingresa tu nombre</h2>
-    <form action="escoger.html" method="get">
-        <input type="text" name="usuario" placeholder="Tu nombre aquí" required>
-        <button type="submit">Iniciar</button>
-    </form>
+
+  <!-- Ventana emergente para el estado de la BD -->
+  <div id="modalDBStatus" class="modal">
+    <div class="modal-content">
+      <h2>Estado de la Base de Datos</h2>
+      <p id="modalMessage"></p>
+      <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <h2>Ingresa tu nombre</h2>
+  <form onsubmit="guardarUsuario(event)">
+    <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required>
+    <button type="submit">Iniciar</button>
+  </form>
+
+  <script>
+    // Mostrar ventana emergente con el estado de la base de datos
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.electron) {
+            console.log('usuario.html ha sido cargado');
+            
+            window.electron.onDBStatus(message => {
+                console.log('Evento recibido en usuario.html:', message);
+                
+                const modal = document.getElementById('modalDBStatus');
+                const modalMessage = document.getElementById('modalMessage');
+
+                if (modal && modalMessage) {
+                    modalMessage.textContent = message;
+                    modal.style.display = 'block'; // Mostrar la ventana emergente
+                } else {
+                    console.error('No se encontró la ventana emergente en usuario.html.');
+                }
+            });
+        } else {
+            console.error('window.electron no está definido.');
+        }
+    });
+
+    function cerrarModal() {
+        document.getElementById('modalDBStatus').style.display = 'none';
+    }
+
+    // ✅ Función para registrar usuario
+    async function guardarUsuario(event) {
+        event.preventDefault();
+        const nombre = document.getElementById('usuarioInput').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/registrar-usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('usuarioId', data.usuarioId || nombre);
+                localStorage.setItem('usuarioNombre', nombre);
+                window.location.href = 'escoger.html';
+            } else {
+                alert(data.mensaje || 'Ocurrió un error al registrar el usuario.');
+            }
+        } catch (err) {
+            console.error('🚨 Error en la solicitud:', err);
+            alert('No se pudo conectar con el servidor. Se usará el modo offline.');
+
+            //Guardar usuario en localStorage en caso de fallo de conexión
+            localStorage.setItem('usuarioId', nombre);
+            localStorage.setItem('usuarioNombre', nombre);
+            window.location.href = 'escoger.html';
+        }
+    }
+  </script>
 </body>
 </html>

@@ -1,44 +1,28 @@
-const connection = require('../db/database');
+const { agregarUsuario, obtenerUsuarios } = require('../db/database'); // Importar funciones mejoradas
 
-function crearTablaSiNoExiste() {
-    const query = `CREATE TABLE IF NOT EXISTS decisiones (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        usuario_id INT NOT NULL,
-        decision TEXT NOT NULL,
-        fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        ubicacion VARCHAR(255),
-        tiempo_lectura INT
-    );`;
+function registrarUsuario(nombre, callback) {
+    const usuario = { nombre };
 
-    connection.query(query, (err, result) => {
+    agregarUsuario(usuario, (err) => {
         if (err) {
-            console.error('Error al crear la tabla:', err);
+            console.error('Error registrando usuario:', err);
+            return callback(err, null);
+        }
+        console.log('Usuario registrado:', nombre);
+        callback(null, usuario.nombre); // Devuelve el nombre del usuario (en lugar del ID)
+    });
+}
+
+function guardarDecision(usuarioId, decision, tiempoJuego, opciones) {
+    const decisionData = { usuarioId, decision, tiempoJuego, opciones };
+
+    agregarUsuario(decisionData, (err) => {  // Se usa la misma lógica de almacenamiento
+        if (err) {
+            console.error('Error guardando decisión:', err);
         } else {
-            console.log('Tabla "decisiones" lista.');
+            console.log('Decisión guardada para el usuario:', usuarioId);
         }
     });
 }
 
-// Función para guardar decisión y luego redirigir
-function registrarDecision(usuarioId, decision, url) {
-    console.log("Guardando decisión:", decision);
-
-    const ubicacion = "Historia1Hombre"; // Puedes ajustarlo según la página
-    const tiempoJuego = Date.now(); // Marca de tiempo
-
-    const query = 'INSERT INTO decisiones (usuario_id, decision, ubicacion, tiempo_lectura) VALUES (?, ?, ?, ?)';
-
-    connection.query(query, [usuarioId, decision, ubicacion, tiempoJuego], (err, results) => {
-        if (err) {
-            console.error('Error al guardar decisión:', err);
-        } else {
-            console.log('Decisión guardada con ID:', results.insertId);
-
-            // Aquí puedes confirmar que la redirección realmente se ejecuta
-            console.log("Redirigiendo a:", url);
-            window.location.href = url;
-        }
-    });
-}
-
-module.exports = { crearTablaSiNoExiste, registrarDecision };
+module.exports = { registrarUsuario, guardarDecision };
