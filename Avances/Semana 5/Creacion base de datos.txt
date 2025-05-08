@@ -17,3 +17,31 @@ Otros packetes necesarios para conectar a la base de datos:
 npm install express
 npm install body-parser
 npm install cors
+
+
+CASOS:
+
+Para crear un archivo especial con la comunicación entre pantallas:
+
+
+Cuando usas Electron con contextIsolation: true (lo cual es bueno por seguridad), el código dentro de tu HTML no tiene acceso directo a require(), ipcRenderer, ni nada del entorno Node.js.
+
+Por eso, Electron necesita un archivo puente llamado preload.js, que actúa como intermediario entre el proceso renderer (tu HTML) y el main (backend de Electron).
+
+
+APP./
+├── main.js
+├── preload.js        //puente entre HTML y backend
+├── interacciones.js  //frontend compartido
+├── servidor/
+│   ├── server.js
+│   └── registro.js
+├── db/
+│   └── database.js
+└── Historia1Hombre.html	//Carpeta con las secuencia de la historia humano
+├── usuario.html   	//registra usuario
+├── escoger.html		//Selección tipo personaje
+└── db_local.js		//Almacena al usuario sin conexión a la base de datos
+└── otros.json
+└── otros.html
+└── otros.css
