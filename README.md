@@ -88,5 +88,5 @@ Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito
 |📂 Semana 3 | Bosquejo y prototipo | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%203)|
 |📂 Semana 4 | Commits y capacitación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%204)|
 |📂 Semana 5 | Desarrollo proyecto (BD) | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%205)|
-|📂 Semana 6 | Desarrollo y planificación | [Ver]()|
+|📂 Semana 6 | Desarrollo y planificación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%206)|
 
