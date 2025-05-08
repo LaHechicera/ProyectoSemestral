@@ -12,3 +12,8 @@ Carpeta servidor para archivos con la lógica de almacenar datos.
 2. Archivo registro.js: contiene la lógica para guardar desciciones en la db y crea la tabla del proyecto.
 
 3. instalar para que node.js reciba las decisiones y las guarde en MySQL: npm install express
+
+Otros packetes necesarios para conectar a la base de datos:
+npm install express
+npm install body-parser
+npm install cors
