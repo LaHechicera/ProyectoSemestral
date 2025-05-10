@@ -47,11 +47,14 @@ git clone https://github.com/LaHechicera/ProyectoSemestral.git
 5. Luego insertamos "npm install electron --save-dev", esto instalara electron y la carpeta "node_modules" que contiene los paquetes para iniciar la app
 6. A continuación se debe ir al archivo “package.json” y modificar como se observa a continuacion:
 ```bash
+
+//Se busca esta linea de código, originalmente se ve así:
+
 "scripts": {
-    "start": "electron ."
+    "test": "echo \"Error: no test specified\" && exit 1"
 }
 
-//El archivo quedaria de la siguiente manera
+//Luego con la modificación en las lineas de "scripts" y "start", el archivo quedaria de la siguiente manera
 
 {
   "name": "app",
