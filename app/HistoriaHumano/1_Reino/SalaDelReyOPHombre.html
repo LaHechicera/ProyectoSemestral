@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Historia1Hombre</title>
-        <script>
-            function registrarDecision( texto, destino) {
-                console.log(" Texto:", texto, "Destino:", destino); // Aquí podrías guardar la decisión, por ejemplo en localStorage o enviarla a un servidor
-                window.location.href = destino; // Redirige a la nueva página
-            }
-            
-        </script>
+        <title>Historia</title>
+        <link rel="stylesheet" href="../../EstiloCssHistorias/cssHumano1.css"/>
+    <style>
+        body{
+            background: url('../../ImagenesFigmaHumano/ReinoSalaDelRey.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
     </head>
-    <title>SalaDelReyOPHombre</title>
     <body>
-        <h1>Sala del rey</h1>
-        <p>El rey escucha tu propuesta y determina aceptar, pero te quita todo el armamento y provisiones que habias conseguido, pues te dice que eso es propiedad del reino y asi el rey te expulsa de sus tierras.</p>
-        <p></p>
+    <div class="contenedor">
+        <div class="texto1">
+    <h1>Sala del rey</h1>
+    </div>
+        <div class="contenedor2">
+            <div class="texto2">
+        <p>El rey escucha tu propuesta y acepta, pero 
+            te quita todo el armamento y provisiones que habias 
+            conseguido, pues te dice que eso es propiedad del reino 
+            y asi eres expulsado del reino.</p>
+            </div>
+            <div class="botones">
         <button onclick="registrarDecision('', '../2_AfuerasReino/AfuerasDelReino1.html')">Continuar</button>
+</div>
+        </div>
+    </div>
     </body>
 </html>
