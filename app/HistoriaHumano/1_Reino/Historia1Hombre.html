@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Historia1Hombre</title>
+    <title>Historia</title>
+    <link rel="stylesheet" href="../../EstiloCssHistorias/cssHumano1.css"/>
+    <style>
+        body{
+            background: url('../../ImagenesFigmaHumano/ReinoHistoria1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 <body>
-    <h1>Eres un soldado</h1>
-    <p>Eres un soldado descansando en el reino luego de estar en el campo de enfrentamiento, notas la displicencia de tus compañeros en combate en los enfrentamientos como si no quisieran mejorar. Un día temprano decides dejar el reino en busca de nuevos desafíos y un mejor ambiente de combate.</p>
-    <p>En la mañana del día siguiente:</p>
-    <button onclick="guardarDecision('', 'SalaDelReyOPHombre.html')">Vas donde el Rey para obtener credibilidad en tu nuevo camino</button>
-    <p></p>
-    <button onclick="guardarDecision('', '../2_AfuerasReino/AfuerasDelReinoHombre.html')">Esperas el cambio de turno de los guardias esperando escapar</button>
-    
-    <script src="interacciones.js"></script>    
-</body>
+    <div class="contenedor">
+        <div class="texto1">
+    <h1>Soldado</h1>
+    </div>
+        <div class="contenedor2">
+            <div class="texto2">
+    <p>Eres un soldado descansando en el reino luego de estar en el campo de 
+        enfrentamiento, notas la incompetencia de tus compañeros de combate 
+        en los enfrentamientos, no quieren mejorar. Temprano 
+        decides dejar el reino en busca de nuevos desafíos y mejores combates.</p>
+    </div>
+            <div class="botones">
+    <button onclick="guardarDecision('', 'SalaDelReyOPHombre.html')">Vas donde el Rey 
+        a convencerlo en tu nuevo camino</button>
+    <button onclick="guardarDecision('', '../2_AfuerasReino/AfuerasDelReinoHombre.html')">Esperas 
+        el cambio de turno de los guardias para escapar</button>  
+</div>
+        </div>
+    </div>
+    </body>
 </html>

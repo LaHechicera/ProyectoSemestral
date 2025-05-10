@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'God of War';
+    src: url('../Fuentes/GODOFWAR.TTF');
+    }
+
+body {
+    font-family: 'God of War', sans-serif;
+    filter: drop-shadow(1px 1px 3px black);
+}
+
+/* Hago que el contenedor se vaya hacia la parte inferior */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empuja el cuadro de diálogo inferior hacia abajo */
+    height: 500px; /* Hace que ocupe el height del main.js se puede cambiar*/
+    gap: 0;
+  }
+  
+/*Aqui estilo de cuadro de dialogo cafe*/
+div h1{
+    font-family: 'God of War', sans-serif;
+    background-image: url('../ImagenesFigmaElfo/cuadroDialogoArriba.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-y: bottom; /*hace que la imagen se quede lo mas abajo posible*/
+    display: inline-block; /*Se ajusta al texto*/
+    padding: 50px;
+    text-align: left;
+    font-size: 25px; /*Tamaño texto*/
+    color: #ffffff;
+    font-weight: normal; /*Dejamos la fuente sin negrita*/
+    padding-bottom: 5px; /*Hace que el texto se alinie con la imagen*/
+}
+
+/*Aqui estilo de cuadro de dialogo con botones*/
+.contenedor2 {
+    background-image: url('../ImagenesFigmaElfo/cuadroDialogoAbajo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: top;
+    display: inline-block;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/*Hace que esten ams cerca*/
+div h1, .contenedor2 {
+    margin-bottom: 0;
+}
+
+
+/*Aqui estilo botones*/
+div button {
+  background-color: #252525;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+button:hover{
+    background-color: rgb(63, 0, 0);
+    color: #ffffff;
+    box-shadow: 0 0 25px #fec1958c;
+  }
