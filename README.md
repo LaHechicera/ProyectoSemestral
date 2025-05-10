@@ -76,7 +76,8 @@ git clone https://github.com/LaHechicera/ProyectoSemestral.git
 }
 
 ```
-7. Luego en la misma consola luego de realizar todos los pasos anteriores, para iniciar la app se debe ingresar "npm start"
+7. Instalar librerias en terminal de VSC: "npm install express", "npm install mysql" y "npm install cors"
+8. Luego en la misma consola luego de realizar todos los pasos anteriores, para iniciar la app se debe ingresar "npm start"
 
 Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito.
 
