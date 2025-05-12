@@ -5,6 +5,7 @@
 
 body {
   font-family: 'God of War', sans-serif;
+  color: rgb(4, 4, 48);
 }
 body h1{
   filter: drop-shadow(1px 1px 3px white);
