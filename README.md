@@ -36,6 +36,8 @@ Para esto utilizaremos el framework de Electron para poder trabajar con:
 
 Te enseñamos paso a paso para que puedas instalar el proyecto en tu propio pc:
 
+(Antes de todo debes instalar Node.js en el caso de no tenerlo descargado)
+
 1. Clona el repositorio:
 ```bash
 git init
