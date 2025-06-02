@@ -1,99 +1,62 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const { handleUserRegistration, syncOfflineData } = require('./servidor/registro');
-const { isDatabaseConnected } = require('./db/database');
-const { saveUserOffline } = require('./db/offline');
+const { connection, sincronizarBaseDeDatos } = require('./db/database');
 
+// Servidor Express
+const expressApp = require('./servidor/server');
+expressApp.listen(3000, () => {
+  console.log('Servidor Express corriendo en http://localhost:3000');
+});
+
+// Crear ventana
 let mainWindow;
+function createWindow(file) {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      enableRemoteModule: false,
+      nodeIntegration: false
+    }
+  });
 
-//Crea la ventana principal de la aplicación.
-function createWindow() {
-    mainWindow = new BrowserWindow({
-        width: 1200, 
-        height: 800, 
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: false,
-            contextIsolation: true,
-        },
-    });
+  mainWindow.loadFile(file);
 
-    mainWindow.loadFile('usuario.html');
+  mainWindow.webContents.once('did-finish-load', () => {
+    checkDatabaseConnection(); //Ejecutar la verificación cuando la ventana ya cargó
+  });
 
-    // Maneja el evento cuando la ventana está lista para enviar mensajes del ESTADO DE CONEXION A LA BASE DE DATOS
-    mainWindow.webContents.on('did-finish-load', async () => {
-        const connected = await isDatabaseConnected();
-        const statusMessage = connected ? 'Modo ONLINE. Conectado a la base de datos' : 'Modo Offline activo, no se encuentra conectado a la base de datos.';
-        // Envía el estado a la ventana de renderizado
-        mainWindow.webContents.send('db-status', statusMessage);
-
-        // Si se conecta, intentar sincronizar datos offline
-        if (connected) {
-            const syncResult = await syncOfflineData();
-            if (syncResult.success) {
-                console.log('Sincronización inicial completa:', syncResult.message);
-            } else {
-                console.warn('Sincronización inicial fallida:', syncResult.message);
-            }
-        }
-    });
+  return mainWindow;
 }
-// Cuando Electron está listo, crea la ventana.
+
 app.whenReady().then(() => {
-    createWindow(); // <--- ¡Esta línea es CRUCIAL!
+  mainWindow = createWindow('index.html');
 
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
-    });
-});
-
-// Cierra la aplicación cuando todas las ventanas están cerradas, excepto en macOS.
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      mainWindow = createWindow('index.html');
     }
+  });
 });
 
-ipcMain.handle('registrar-usuario', async (event, userData) => {
-    try {
-        const connected = await isDatabaseConnected();
-        const mode = connected ? 'online' : 'offline';
-        const result = await handleUserRegistration(userData, mode);
+//Enviar eventos de base de datos correctamente
+function checkDatabaseConnection() {
+  if (!mainWindow) {
+    console.error('No hay ventana activa para enviar el evento.');
+    return;
+  }
 
-        if (result.success && connected) {
-            return {
-                sincronizado: true,
-                id_usuario: result.user ? result.user.id_usuario : null,
-                message: result.message
-            };
-        } else if (result.success && !connected) {
-            return {
-                sincronizado: false,
-                id_usuario: result.user ? result.user.id_usuario : null,
-                message: result.message
-            };
-        } else {
-            return {
-                sincronizado: false,
-                id_usuario: null,
-                message: result.message
-            };
-        }
-
-    } catch (error) {
-        console.error('Error al manejar el registro/carga de usuario:', error);
-        return { sincronizado: false, id_usuario: null, message: error.message };
-    }
-});
-
-ipcMain.handle('guardar-offline-emergency', async (event, userData) => {
-    try {
-        const result = await saveUserOffline(userData);
-        return result;
-    } catch (error) {
-        console.error('Error al guardar offline de emergencia:', error);
-        return { success: false, message: error.message };
-    }
-});
+  if (connection.state === 'disconnected') {
+    console.log('Modo offline activado. Enviando evento...');
+    
+    ipcMain.emit('db-status', 'Base de datos no disponible.'); //Enviar evento a `preload.js`
+    mainWindow.webContents.send('db-status', 'Base de datos no disponible.'); //Enviar a la ventana
+  } else {
+    console.log('Base de datos conectada. Enviando evento...');
+    
+    ipcMain.emit('db-status', 'Base de datos disponible.');
+    mainWindow.webContents.send('db-status', 'Base de datos disponible.');
+  }
+}

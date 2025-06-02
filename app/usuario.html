@@ -86,61 +86,39 @@
         document.getElementById('modalDBStatus').style.display = 'none';
     }
 
-    //Función para registrar usuario
+    // ✅ Función para registrar usuario
     async function guardarUsuario(event) {
-  event.preventDefault();
-  const nombre = document.getElementById('usuarioInput').value;
-  const modal = document.getElementById('modalDBStatus');
-  const modalMessage = document.getElementById('modalMessage');
+        event.preventDefault();
+        const nombre = document.getElementById('usuarioInput').value;
 
-  try {
-    const resultado = await window.api.registrarUsuario({
-      usuarioNombre: nombre,
-      selectStory: null,
-      genero: null,
-      tiempo_juego: 0
-    });
+        try {
+            const response = await fetch('http://localhost:3000/registrar-usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre })
+            });
 
-    localStorage.setItem('usuarioId', resultado.id_usuario);
-    localStorage.setItem('usuarioNombre', nombre);
-    
-    if (resultado.sincronizado) {
-      modalMessage.textContent = `Tu usuario ha sido registrado`; //Mensaje emergente al crear usuario
-    } else {
-      modalMessage.textContent = `Inicio en Modo offline.`; //Mensaje emergente al terminar de crear usuario
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('usuarioId', data.usuarioId || nombre);
+                localStorage.setItem('usuarioNombre', nombre);
+                window.location.href = 'escoger.html';
+            } else {
+                alert(data.mensaje || 'Ocurrió un error al registrar el usuario.');
+            }
+        } catch (err) {
+            console.error('🚨 Error en la solicitud:', err);
+            alert('No se pudo conectar con el servidor. Se usará el modo offline.');
+
+            //Guardar usuario en localStorage en caso de fallo de conexión
+            localStorage.setItem('usuarioId', nombre);
+            localStorage.setItem('usuarioNombre', nombre);
+            window.location.href = 'escoger.html';
+        }
     }
-    
-    modal.style.display = 'block';
-    
-    // Redirige a la siguiente ventana después de x segundos
-    setTimeout(() => {
-      window.location.href = 'escoger.html';
-    }, 2000); //ms
-
-  } catch (error) {
-    // Fallback ultra-resiliente
-    modalMessage.textContent = `Usando modo emergencia offline. Tu progreso será guardado localmente.`;
-    modal.style.display = 'block';
-    
-    const offlineId = `emergency-${Date.now()}`;
-    localStorage.setItem('usuarioId', offlineId);
-    localStorage.setItem('usuarioNombre', nombre);
-    
-    // Crea un registro mínimo en el JSON
-    try {
-      await window.api.guardarOfflineEmergency({
-        id_usuario: offlineId,
-        usuarioNombre: nombre
-      });
-    } catch (e) {
-      console.error('Error en fallback:', e);
-    }
-    
-    setTimeout(() => {
-      window.location.href = 'escoger.html';
-    }, 2000);
-  }
-}
   </script>
 </body>
 </html>
