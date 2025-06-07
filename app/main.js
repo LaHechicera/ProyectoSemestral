@@ -17,8 +17,7 @@ function createWindow() {
         },
     });
 
-    mainWindow.loadFile('usuario.html');
-    mainWindow.loadFile('usuario.html');
+    mainWindow.loadFile('index.html');
 
     mainWindow.webContents.on('did-finish-load', async () => {
         const connected = await isDatabaseConnected();
