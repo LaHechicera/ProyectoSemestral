@@ -52,11 +52,11 @@ function checkDatabaseConnection() {
     console.log('Modo offline activado. Enviando evento...');
     
     ipcMain.emit('db-status', 'Base de datos no disponible.'); //Enviar evento a `preload.js`
-    mainWindow.webContents.send('db-status', 'Base de datos no disponible.'); //Enviar a la ventana
+    console.log('db-status', 'Base de datos no disponible.'); //Enviar a la ventana
   } else {
     console.log('Base de datos conectada. Enviando evento...');
     
     ipcMain.emit('db-status', 'Base de datos disponible.');
-    mainWindow.webContents.send('db-status', 'Base de datos disponible.');
+    console.log('db-status', 'Base de datos disponible.');
   }
 }

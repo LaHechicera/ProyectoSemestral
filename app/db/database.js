@@ -33,7 +33,7 @@ function conectarMySQL() {
     connection.connect(err => {
         if (err) {
             console.error('Error conectando a MySQL:', err);
-            console.log('Modo offline activado: Usando almacenamiento local.'); //Mensaje en terminal de uso de la app sin base de datos
+            mainWindow.send('Modo offline activado: Usando almacenamiento local.'); //Mensaje en terminal de uso de la app sin base de datos
 
             if (!fs.existsSync('db_local.json')) {
                 fs.writeFileSync('db_local.json', JSON.stringify({ usuarios: [] }, null, 2));
@@ -46,7 +46,7 @@ function conectarMySQL() {
             setTimeout(conectarMySQL, 10000);
             return;
         }
-        console.log('Conectado a MySQL');
+        mainWindow.send('Conectado a MySQL');
         ipcMain.emit('db-online', 'Base de datos disponible.');
         sincronizarBaseDeDatos();
     });
@@ -72,7 +72,7 @@ function obtenerUsuarios(callback) {
 function agregarUsuario(usuario, callback) {
     console.log('Estado de conexión MySQL:', connection.state);
     if (connection.state === 'disconnected') {
-        console.log('Base de datos no disponible, guardando usuario localmente.');
+        mainWindow.view('Base de datos no disponible, guardando usuario localmente.');
         fs.readFile('db_local.json', 'utf8', (err, data) => {
             let dbLocal = JSON.parse(data || '{ "usuarios": [] }');
             dbLocal.usuarios.push(usuario);
@@ -118,13 +118,13 @@ function checkDatabaseConnection(mainWindow) {
         console.log('Modo offline activado.');
         if (mainWindow) {
             console.log('Enviando evento a usuario.html: Base de datos no disponible.');
-            mainWindow.webContents.send('db-status', 'Base de datos no disponible.');
+            console.log('db-status', 'Base de datos no disponible.');
         }
     } else {
         console.log('Base de datos conectada.');
         if (mainWindow) {
             console.log('Enviando evento a usuario.html: Base de datos disponible.');
-            mainWindow.webContents.send('db-status', 'Base de datos disponible.');
+            console.log('db-status', 'Base de datos disponible.');
         }
     }
 }
