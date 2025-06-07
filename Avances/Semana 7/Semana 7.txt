@@ -1,0 +1,3 @@
+Se estuvo trabajando en la primera función de testing para la base de datos, la cual se pudo lograr realizar el inicio de sesión de manera online donde se guarda hasta el momento el usuario, y de modo offline que nos permite guardar los usuarios en un archivo .json el cual al momento de entrar al modo online los nombres de usuario se van directamente a la base de datos y el archivo .json se vacia, permitiendo que se puedan guardar nuevos usuarios en un archivo limpio para el siguiente juego en modo offline.
+
+También para el archivo de la base de datos, esta establecida la creación de la tabla con los datos necesarios, la cual se crea de forma automática siempre y cuando exista la base de datos con nombre "cronicas".
