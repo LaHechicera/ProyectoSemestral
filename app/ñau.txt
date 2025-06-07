@@ -1,3 +1,45 @@
+
+REDIRECCIONAR A OTRA PAGINA
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choices of an Adventurer</title>
+</head>
+<body>
+    <h1>Elige tu raza</h1>
+    <form>
+        <label>
+            <input type="radio" name="raza" value="humano" required /> Humano
+        </label>
+        <label>
+            <input type="radio" name="raza" value="elfo" required /> Elfo
+        </label>
+    </form>
+
+    <h2>Elige tu género</h2>
+    <form>
+        <label>
+            <input type="radio" name="genero" value="hombre" required /> Hombre
+        </label>
+        <label>
+            <input type="radio" name="genero" value="mujer" required /> Mujer
+        </label>
+    </form>
+
+    <button onclick="redireccionar()">Confirmar y continuar</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
 prueba gitignore
 
 

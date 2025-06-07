@@ -1,0 +1,366 @@
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git pull origin master
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 8 (delta 0), reused 7 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (8/8), 1.47 MiB | 2.10 MiB/s, done.
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+   0ea6013..570d4e7  master     -> origin/master
+Updating 0ea6013..570d4e7
+Fast-forward
+ Avances/Semana 2 y 3/Bosquejo Figma.png      | Bin 0 -> 763356 bytes
+ Avances/{Semana 2 => Semana 2 y 3}/Figma.txt |   2 +-
+ Avances/Semana 2 y 3/Prototipado Figma.png   | Bin 0 -> 785969 bytes
+ 3 files changed, 1 insertion(+), 1 deletion(-)
+ create mode 100644 Avances/Semana 2 y 3/Bosquejo Figma.png
+ rename Avances/{Semana 2 => Semana 2 y 3}/Figma.txt (59%)
+ create mode 100644 Avances/Semana 2 y 3/Prototipado Figma.png
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git pull origin master
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 1.36 KiB | 279.00 KiB/s, done.
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+   570d4e7..a0e6970  master     -> origin/master
+Updating 570d4e7..a0e6970
+Fast-forward
+ README.md | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git pull origin master
+remote: Enumerating objects: 19, done.
+remote: Counting objects: 100% (19/19), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 11 (delta 8), reused 10 (delta 8), pack-reused 0 (from 0)
+Unpacking objects: 100% (11/11), 15.65 KiB | 178.00 KiB/s, done.
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+   a0e6970..bea7196  master     -> origin/master
+Updating a0e6970..bea7196
+Fast-forward
+ app/Fuente/GODOFWAR.TTF | Bin 0 -> 25084 bytes
+ app/index.html          |  11 ++++++-----
+ app/indexstyle.css      |   8 +++++++-
+ app/main.js             |   4 ++--
+ app/style.css           |  16 +++++++++++-----
+ app/test.html           |   2 +-
+ 6 files changed, 27 insertions(+), 14 deletions(-)
+ create mode 100644 app/Fuente/GODOFWAR.TTF
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$
+ *  History restored 
+
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$
+
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ 'c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: syntax error near unexpected token `newline'
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+c:/Users/andyv/OneDrive/Escritorio/ProyectoSemestral/app/index.html: line 1: `<!DOCTYPE html>'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git add .
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git commit -m "actualizacion historia"
+[Endy efb570a] actualizacion historia
+ 26 files changed, 303 insertions(+), 1 deletion(-)
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoHombre.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/FinActo1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea2.html
+ create mode 100644 app/HistoriaHumano/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP2.html
+ create mode 100644 app/HistoriaHumano/FinAventura.html
+ create mode 100644 app/HistoriaHumano/GameOverPantano.html
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a1.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a2.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/AfuerasMonta\303\261a.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/cueva.html"
+ create mode 100644 app/HistoriaHumano/MuerteCongelada.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Hombre.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Mujer.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPHombre.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPMujer.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git push origin Endy
+Enumerating objects: 106, done.
+Counting objects: 100% (91/91), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (72/72), done.
+Writing objects: 100% (73/73), 1.49 MiB | 1014.00 KiB/s, done.
+Total 73 (delta 16), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (16/16), completed with 9 local objects.
+To https://github.com/LaHechicera/ProyectoSemestral.git
+   917ed2e..efb570a  Endy -> Endy
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 12 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (master)
+$ git pull origin master
+remote: Enumerating objects: 48, done.
+remote: Counting objects: 100% (47/47), done.
+remote: Compressing objects: 100% (37/37), done.
+remote: Total 42 (delta 8), reused 37 (delta 5), pack-reused 0 (from 0)
+Unpacking objects: 100% (42/42), 10.28 KiB | 140.00 KiB/s, done.
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+   c92315c..1539f62  master     -> origin/master
+Updating 1541564..1539f62
+Fast-forward
+ Avances/Semana 2 y 3/Bosquejo Figma.png                | Bin 0 -> 763356 bytes
+ Avances/{Semana 2 => Semana 2 y 3}/Figma.txt           |   2 +-
+ Avances/Semana 2 y 3/Prototipado Figma.png             | Bin 0 -> 785969 bytes
+ Avances/Semana 4/Sem 4.txt                             |   5 +++++
+ README.md                                              |   6 +++---
+ app/Fuente/GODOFWAR.TTF                                | Bin 0 -> 25084 bytes
+ app/HistoriaElfo/Bosque/Bosque1.html                   |  13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque2.html                   |  13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque3.html                   |  12 ++++++++++++
+ app/HistoriaElfo/Bosque/Bosque4.html                   |  13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque1_2.html                |  12 ++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque2_2.html                |  13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque3_2.html                |  11 +++++++++++
+ app/HistoriaElfo/Bosque2/MuerteBosque1.html            |  10 ++++++++++
+ app/HistoriaElfo/Cueva/Cueva1.html                     |  14 ++++++++++++++
+ app/HistoriaElfo/Cueva/MuerteCueva2.html               |  11 +++++++++++
+ app/HistoriaElfo/Cueva/Ruinas1.html                    |  12 ++++++++++++
+ app/HistoriaElfo/Cueva/Sierpe.html                     |  13 +++++++++++++
+ app/HistoriaElfo/Cueva2/Caminos.html                   |  12 ++++++++++++
+ app/HistoriaElfo/Cueva2/MuerteCaminos3.html            |  11 +++++++++++
+ app/HistoriaElfo/Cueva2/Ruinas2.html                   |  13 +++++++++++++
+ app/HistoriaElfo/Cueva2/RunasF.html                    |  13 +++++++++++++
+ app/HistoriaElfo/Final/Agradecimiento.html             |   8 ++++++++
+ app/HistoriaElfo/Final/FinalBueno1.html                |  10 ++++++++++
+ app/HistoriaElfo/Final/FinalBueno1_2.html              |  11 +++++++++++
+ app/HistoriaElfo/Final/FinalBueno2.html                |  14 ++++++++++++++
+ app/HistoriaElfo/Final/FinalMalo1.html                 |  12 ++++++++++++
+ app/HistoriaElfo/Final/FinalMalo2.html                 |  13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Biblioteca.html                |  12 ++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo1.html                   |  13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo2.html                   |  11 +++++++++++
+ app/HistoriaElfo/wakeupH.html                          |  12 ++++++++++++
+ app/HistoriaElfo/wakeupM.html                          |  12 ++++++++++++
+ app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html  |  13 +++++++++++++
+ .../AfuerasReino/AfuerasDelReinoHombre.html            |  10 ++++++++++
+ .../AfuerasReino/AfuerasDelReinoMujer.html             |  10 ++++++++++
+ .../AfuerasReino/AfuerasDelReinoOP1.html               |  13 +++++++++++++
+ .../AfuerasReino/AfuerasDelReinoOP2.html               |  12 ++++++++++++
+ app/HistoriaHumano/AfuerasReino/FinActo1.html          |  12 ++++++++++++
+ app/HistoriaHumano/Aldea/Aldea1.html                   |  13 +++++++++++++
+ app/HistoriaHumano/Aldea/Aldea2.html                   |  11 +++++++++++
+ app/HistoriaHumano/Bosque/Bosque1.html                 |  15 +++++++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP1.html               |  11 +++++++++++
+ app/HistoriaHumano/Bosque/BosqueOP2.html               |  12 ++++++++++++
+ app/HistoriaHumano/FinAventura.html                    |  13 +++++++++++++
+ app/HistoriaHumano/GameOverPantano.html                |  13 +++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a1.html"          |  15 +++++++++++++++
+ .../Monta\303\261a/Acto2Monta\303\261a2.html"          |  13 +++++++++++++
+ .../Monta\303\261a/AfuerasMonta\303\261a.html"         |  11 +++++++++++
+ "app/HistoriaHumano/Monta\303\261a/cueva.html"         |  13 +++++++++++++
+ app/HistoriaHumano/MuerteCongelada.html                |  11 +++++++++++
+ app/HistoriaHumano/Reino/Historia1Hombre.html          |  12 ++++++++++++
+ app/HistoriaHumano/Reino/Historia1Mujer.html           |  12 ++++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPHombre.html       |  10 ++++++++++
+ app/HistoriaHumano/Reino/SalaDelReyOPMujer.html        |  10 ++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html |  14 ++++++++++++++
+ app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html |  11 +++++++++++
+ .../ValleDelDragon/ValleDelDragonFin.html              |  12 ++++++++++++
+ app/index.html                                         |  11 ++++++-----
+ app/indexstyle.css                                     |   8 +++++++-
+ app/main.js                                            |   4 ++--
+ app/style.css                                          |  16 +++++++++++-----
+ app/suave.html                                         |   2 +-
+ app/test.html                                          |   2 +-
+ 64 files changed, 663 insertions(+), 19 deletions(-)
+ create mode 100644 Avances/Semana 2 y 3/Bosquejo Figma.png
+ rename Avances/{Semana 2 => Semana 2 y 3}/Figma.txt (59%)
+ create mode 100644 Avances/Semana 2 y 3/Prototipado Figma.png
+ create mode 100644 Avances/Semana 4/Sem 4.txt
+ create mode 100644 app/Fuente/GODOFWAR.TTF
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque2.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque3.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque4.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque1_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque2_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque3_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/MuerteBosque1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Cueva1.html
+ create mode 100644 app/HistoriaElfo/Cueva/MuerteCueva2.html
+ create mode 100644 app/HistoriaElfo/Cueva/Ruinas1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Sierpe.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Caminos.html
+ create mode 100644 app/HistoriaElfo/Cueva2/MuerteCaminos3.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Ruinas2.html
+ create mode 100644 app/HistoriaElfo/Cueva2/RunasF.html
+ create mode 100644 app/HistoriaElfo/Final/Agradecimiento.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1_2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo2.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Biblioteca.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo1.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo2.html
+ create mode 100644 app/HistoriaElfo/wakeupH.html
+ create mode 100644 app/HistoriaElfo/wakeupM.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReino1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoHombre.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoMujer.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP1.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/AfuerasDelReinoOP2.html
+ create mode 100644 app/HistoriaHumano/AfuerasReino/FinActo1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea1.html
+ create mode 100644 app/HistoriaHumano/Aldea/Aldea2.html
+ create mode 100644 app/HistoriaHumano/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP1.html
+ create mode 100644 app/HistoriaHumano/Bosque/BosqueOP2.html
+ create mode 100644 app/HistoriaHumano/FinAventura.html
+ create mode 100644 app/HistoriaHumano/GameOverPantano.html
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a1.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/Acto2Monta\303\261a2.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/AfuerasMonta\303\261a.html"
+ create mode 100644 "app/HistoriaHumano/Monta\303\261a/cueva.html"
+ create mode 100644 app/HistoriaHumano/MuerteCongelada.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Hombre.html
+ create mode 100644 app/HistoriaHumano/Reino/Historia1Mujer.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPHombre.html
+ create mode 100644 app/HistoriaHumano/Reino/SalaDelReyOPMujer.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon1.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragon2.html
+ create mode 100644 app/HistoriaHumano/ValleDelDragon/ValleDelDragonFin.html
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (master)
+$ git checkout Endy
+Switched to branch 'Endy'
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$ git pull origin master
+From https://github.com/LaHechicera/ProyectoSemestral
+ * branch            master     -> FETCH_HEAD
+Updating efb570a..1539f62
+Fast-forward
+ app/HistoriaElfo/Bosque/Bosque1.html        | 13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque2.html        | 13 +++++++++++++
+ app/HistoriaElfo/Bosque/Bosque3.html        | 12 ++++++++++++
+ app/HistoriaElfo/Bosque/Bosque4.html        | 13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque1_2.html     | 12 ++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque2_2.html     | 13 +++++++++++++
+ app/HistoriaElfo/Bosque2/Bosque3_2.html     | 11 +++++++++++
+ app/HistoriaElfo/Bosque2/MuerteBosque1.html | 10 ++++++++++
+ app/HistoriaElfo/Cueva/Cueva1.html          | 14 ++++++++++++++
+ app/HistoriaElfo/Cueva/MuerteCueva2.html    | 11 +++++++++++
+ app/HistoriaElfo/Cueva/Ruinas1.html         | 12 ++++++++++++
+ app/HistoriaElfo/Cueva/Sierpe.html          | 13 +++++++++++++
+ app/HistoriaElfo/Cueva2/Caminos.html        | 12 ++++++++++++
+ app/HistoriaElfo/Cueva2/MuerteCaminos3.html | 11 +++++++++++
+ app/HistoriaElfo/Cueva2/Ruinas2.html        | 13 +++++++++++++
+ app/HistoriaElfo/Cueva2/RunasF.html         | 13 +++++++++++++
+ app/HistoriaElfo/Final/Agradecimiento.html  |  8 ++++++++
+ app/HistoriaElfo/Final/FinalBueno1.html     | 10 ++++++++++
+ app/HistoriaElfo/Final/FinalBueno1_2.html   | 11 +++++++++++
+ app/HistoriaElfo/Final/FinalBueno2.html     | 14 ++++++++++++++
+ app/HistoriaElfo/Final/FinalMalo1.html      | 12 ++++++++++++
+ app/HistoriaElfo/Final/FinalMalo2.html      | 13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Biblioteca.html     | 12 ++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo1.html        | 13 +++++++++++++
+ app/HistoriaElfo/Pueblo/Pueblo2.html        | 11 +++++++++++
+ app/HistoriaElfo/wakeupH.html               | 12 ++++++++++++
+ app/HistoriaElfo/wakeupM.html               | 12 ++++++++++++
+ 27 files changed, 324 insertions(+)
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque1.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque2.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque3.html
+ create mode 100644 app/HistoriaElfo/Bosque/Bosque4.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque1_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque2_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/Bosque3_2.html
+ create mode 100644 app/HistoriaElfo/Bosque2/MuerteBosque1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Cueva1.html
+ create mode 100644 app/HistoriaElfo/Cueva/MuerteCueva2.html
+ create mode 100644 app/HistoriaElfo/Cueva/Ruinas1.html
+ create mode 100644 app/HistoriaElfo/Cueva/Sierpe.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Caminos.html
+ create mode 100644 app/HistoriaElfo/Cueva2/MuerteCaminos3.html
+ create mode 100644 app/HistoriaElfo/Cueva2/Ruinas2.html
+ create mode 100644 app/HistoriaElfo/Cueva2/RunasF.html
+ create mode 100644 app/HistoriaElfo/Final/Agradecimiento.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno1_2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalBueno2.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo1.html
+ create mode 100644 app/HistoriaElfo/Final/FinalMalo2.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Biblioteca.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo1.html
+ create mode 100644 app/HistoriaElfo/Pueblo/Pueblo2.html
+ create mode 100644 app/HistoriaElfo/wakeupH.html
+ create mode 100644 app/HistoriaElfo/wakeupM.html
+
+andyv@ALViDi MINGW64 ~/OneDrive/Escritorio/ProyectoSemestral/app (Endy)
+$

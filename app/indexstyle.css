@@ -1,37 +1,34 @@
 @font-face {
-    font-family: 'CafeFuente';
-    src: url('./Fuente/LTMakeup-Regular.otf');
-}
-
-@font-face {
   font-family: 'God of War';
-  src: url('./Fuente/GODOFWAR.TTF');
+  src: url('./Fuentes/GODOFWAR.TTF');
 }
 
 body {
-    font-family: 'God of War', sans-serif;
-    background-color: #ffd000f5;
+  font-family: 'God of War', sans-serif;
+  color: rgb(4, 4, 48);
+}
+body h1{
+  filter: drop-shadow(1px 1px 3px white);
+  display: flex;
+  justify-content: center; 
+}
+body p{
+  filter: drop-shadow(1px 1px 3px white);
+}
+
+nav button{
+  background-color: #252525;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /*hace que e cursor se convierta en una manito*/
   }
-nav {
-    background-color: #252525;
-    overflow: hidden;
-  }
-nav a {
-    float: left;
-    display: block;
+
+button:hover{
+    background-color: rgb(63, 0, 0);
     color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    box-shadow: 0 0 25px #fec1958c;
   }
 
-/*nav a:hover {
-    background-color: #91891b;
-    color: black;
-  }
-nav a.active {
-    background-color: #4CAF50;
-    color: rgb(163, 150, 30);
-  }
 
-/* Asi se hacen comentarios */

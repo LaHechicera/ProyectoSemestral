@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elige tu Aventura</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Guarda el tiempo de inicio al cargar esta página
+    window.onload = () => {
+      if (!localStorage.getItem('inicioJuego')) {
+        localStorage.setItem('inicioJuego', Date.now());
+      }
+    };
+
+    function selectStory(type) {
+      // Mostrar opciones según tipo
+      if (type === 'humano') {
+        document.getElementById('gender-section-humano').style.display = 'block';
+        document.getElementById('gender-section-elfo').style.display = 'none';
+      } else if (type === 'elfo') {
+        document.getElementById('gender-section-humano').style.display = 'none';
+        document.getElementById('gender-section-elfo').style.display = 'block';
+      }
+
+      // Obtener datos del usuario
+      const usuarioId = localStorage.getItem('usuarioId') || 'desconocido';
+      const decisiones = 'Seleccionó raza: ' + type;
+      const tiempoJuego = calcularTiempo();
+      const opciones = type;
+
+      // Enviar los datos al backend
+      ipcRenderer.send('guardar-decision', {
+        usuarioId,
+        decisiones,
+        tiempoJuego,
+        opciones
+      });
+    }
+
+    function calcularTiempo() {
+      const inicio = localStorage.getItem('inicioJuego');
+      const ahora = Date.now();
+      const minutos = Math.floor((ahora - parseInt(inicio)) / 60000);
+      return minutos + ' minutos';
+    }
+  </script>
+</head>
+<body>
+  <h1>Elige tu Historia</h1>
+  <button onclick="selectStory('humano')">Humano</button>
+  <button onclick="selectStory('elfo')">Elfo</button>
+
+  <div id="gender-section-humano" style="display: none;">
+    <h2>Selecciona tu género (Humano)</h2>
+    <button onclick="window.location.href='./HistoriaHumano/1_Reino/Historia1Hombre.html'">Hombre</button>
+    <button onclick="window.location.href='./HistoriaHumano/1_Reino/Historia1Mujer.html'">Mujer</button>
+  </div>
+
+  <div id="gender-section-elfo" style="display: none;">
+    <h2>Selecciona tu género (Elfo)</h2>
+    <button onclick="window.location.href='./HistoriaElfo/wakeupH.html'">Hombre</button>
+    <button onclick="window.location.href='./HistoriaElfo/wakeupM.html'">Mujer</button>
+  </div>
+</body>
+</html>
