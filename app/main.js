@@ -18,6 +18,7 @@ function createWindow() {
     });
 
     mainWindow.loadFile('usuario.html');
+    mainWindow.loadFile('usuario.html');
 
     mainWindow.webContents.on('did-finish-load', async () => {
         const connected = await isDatabaseConnected();
@@ -38,6 +39,11 @@ function createWindow() {
 app.whenReady().then(() => {
     createWindow();
 
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow();
+        }
+    });
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
             createWindow();

@@ -83,3 +83,7 @@ module.exports = {
     handleUserRegistration,
     syncOfflineData
 };
+module.exports = {
+    handleUserRegistration,
+    syncOfflineData
+};
