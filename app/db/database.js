@@ -1,135 +1,154 @@
-const mysql = require('mysql');
-const fs = require('fs');
-const { ipcMain } = require('electron');
+const mysql = require('mysql2/promise');
+const path = require('path');
 
-// Crear conexión a la base de datos
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'cronicas'
-});
+let pool;
 
-// Cerrar conexión antes de reconectar
-function cerrarConexion() {
-    if (connection.state !== 'disconnected') {
-        connection.end(err => {
-            if (err) {
-                console.error('Error al cerrar la conexión:', err);
-            } else {
-                console.log('Conexión a MySQL cerrada correctamente.');
-            }
+async function initializeDatabase() {
+    try {
+        // Configuración de la conexión a MySQL
+        pool = mysql.createPool({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'cronicas',
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
         });
+
+        const connection = await pool.getConnection();
+        console.log('Conectado a la base de datos MySQL en:', `mysql://localhost:3306/cronicas`);
+        connection.release();
+
+        const createTableSql = `
+            CREATE TABLE IF NOT EXISTS usuario (
+                id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+                selectStory VARCHAR(20) DEFAULT NULL,
+                genero VARCHAR(20) DEFAULT NULL,
+                usuarioNombre VARCHAR(15) UNIQUE NOT NULL,
+                decision TEXT DEFAULT NULL,
+                tiempo_juego INT DEFAULT 0
+            )
+        `;
+
+        await pool.query(createTableSql);
+        console.log('Tabla "usuario" verificada/creada exitosamente en MySQL.');
+        return true;
+
+    } catch (error) {
+        console.error('Error al conectar o crear tabla en MySQL:', error.message);
+        pool = null; // Resetea el pool si falla la conexión
+        return false;
     }
 }
 
-// Intentar conectar a MySQL con verificación de estado
-function conectarMySQL() {
-    if (connection.state !== 'disconnected') {
-        console.log('Conexión ya activa, evitando múltiples intentos.');
-        return;
-    }
-
-    connection.connect(err => {
-        if (err) {
-            console.error('Error conectando a MySQL:', err);
-            mainWindow.send('Modo offline activado: Usando almacenamiento local.'); //Mensaje en terminal de uso de la app sin base de datos
-
-            if (!fs.existsSync('db_local.json')) {
-                fs.writeFileSync('db_local.json', JSON.stringify({ usuarios: [] }, null, 2));
-            }
-
-            // Enviar evento a la ventana de Electron
-            ipcMain.emit('db-offline', 'Base de datos no disponible.');
-
-            // Intentar nuevamente cada 10 segundos
-            setTimeout(conectarMySQL, 10000);
-            return;
-        }
-        mainWindow.send('Conectado a MySQL');
-        ipcMain.emit('db-online', 'Base de datos disponible.');
-        sincronizarBaseDeDatos();
-    });
-}
-
-// Función para obtener usuarios (desde MySQL o archivo JSON)
-function obtenerUsuarios(callback) {
-    if (connection.state === 'disconnected') {
-        console.log('Base de datos no disponible, cargando datos locales.'); //Mensaje inicial en terminal si no hay base de datos activado
-        fs.readFile('db_local.json', 'utf8', (err, data) => {
-            if (err) return callback(err, null);
-            callback(null, JSON.parse(data).usuarios);
-        });
-    } else {
-        connection.query('SELECT * FROM usuarios', (err, results) => {
-            if (err) return callback(err, null);
-            callback(null, results);
-        });
-    }
-}
-
-// Función para agregar usuario (en MySQL o almacenamiento local)
-function agregarUsuario(usuario, callback) {
-    console.log('Estado de conexión MySQL:', connection.state);
-    if (connection.state === 'disconnected') {
-        mainWindow.view('Base de datos no disponible, guardando usuario localmente.');
-        fs.readFile('db_local.json', 'utf8', (err, data) => {
-            let dbLocal = JSON.parse(data || '{ "usuarios": [] }');
-            dbLocal.usuarios.push(usuario);
-            fs.writeFile('db_local.json', JSON.stringify(dbLocal, null, 2), err => {
-                if (err) return callback(err);
-                callback(null);
-            });
-        });
-    } else {
-        connection.query('INSERT INTO usuarios SET ?', usuario, err => {
-            if (err) return callback(err);
-            callback(null);
-        });
-    }
-}
-
-// Función para sincronizar datos desde `db_local.json` a MySQL
-function sincronizarBaseDeDatos() {
-    if (!fs.existsSync('db_local.json')) return;
-
-    const data = fs.readFileSync('db_local.json', 'utf8');
-    const dbLocal = JSON.parse(data || '{ "usuarios": [] }');
-
-    if (dbLocal.usuarios.length === 0) return;
-
-    dbLocal.usuarios.forEach(usuario => {
-        connection.query('INSERT INTO usuarios (nombre) VALUES (?)', [usuario.nombre], err => {
-            if (err) {
-                console.error('Error insertando usuario:', err);
-            } else {
-                console.log(`Usuario '${usuario.nombre}' sincronizado con la base de datos.`);
-            }
-        });
-    });
-
-    fs.writeFileSync('db_local.json', JSON.stringify({ usuarios: [] }, null, 2));
-    console.log('Datos locales sincronizados y archivo limpiado.');
-}
-
-// Monitorear estado de conexión y enviar eventos a la interfaz
-function checkDatabaseConnection(mainWindow) {
-    if (connection.state === 'disconnected') {
-        console.log('Modo offline activado.');
-        if (mainWindow) {
-            console.log('Enviando evento a usuario.html: Base de datos no disponible.');
-            console.log('db-status', 'Base de datos no disponible.');
-        }
-    } else {
-        console.log('Base de datos conectada.');
-        if (mainWindow) {
-            console.log('Enviando evento a usuario.html: Base de datos disponible.');
-            console.log('db-status', 'Base de datos disponible.');
+async function isDatabaseConnected() {
+    if (pool) {
+        try {
+            const connection = await pool.getConnection();
+            connection.release();
+            return true;
+        } catch (error) {
+            console.error('El pool de conexiones MySQL no es funcional o la conexión se perdió:', error.message);
+            pool = null;
+            console.log('Intentando reinicializar la base de datos...');
+            return await initializeDatabase();
         }
     }
+    console.log('La base de datos MySQL no está conectada. Intentando inicializar...');
+    return await initializeDatabase();
 }
 
-// Iniciar conexión cuando arranca la aplicación
-conectarMySQL();
+async function handleUserLoginOrRegisterOnline(userData) {
+    const { usuarioNombre } = userData;
+    const connected = await isDatabaseConnected();
 
-module.exports = { obtenerUsuarios, agregarUsuario, cerrarConexion, connection, sincronizarBaseDeDatos, checkDatabaseConnection };
+    if (!connected) {
+        return { success: false, message: 'No hay conexión a la base de datos MySQL.', user: null };
+    }
+
+    try {
+        const [rows] = await pool.query('SELECT * FROM usuario WHERE usuarioNombre = ?', [usuarioNombre]);
+
+        if (rows.length > 0) {
+            console.log(`Usuario "${usuarioNombre}" cargado exitosamente de MySQL.`);
+            return { success: true, message: 'Usuario cargado exitosamente.', user: rows[0] };
+        } else {
+            const insertSql = `
+                INSERT INTO usuario (usuarioNombre, selectStory, genero, decision, tiempo_juego)
+                VALUES (?, ?, ?, ?, ?)
+            `;
+            const [result] = await pool.query(
+                insertSql,
+                [
+                    usuarioNombre,
+                    userData.selectStory || null,
+                    userData.genero || null,
+                    userData.decision || null,
+                    userData.tiempo_juego || 0
+                ]
+            );
+
+            console.log(`Nuevo usuario "${usuarioNombre}" registrado en MySQL con ID: ${result.insertId}`);
+            return {
+                success: true,
+                message: 'Usuario registrado exitosamente.',
+                user: {
+                    id_usuario: result.insertId,
+                    usuarioNombre: usuarioNombre,
+                    selectStory: userData.selectStory || null,
+                    genero: userData.genero || null,
+                    decision: userData.decision || null,
+                    tiempo_juego: userData.tiempo_juego || 0
+                }
+            };
+        }
+    } catch (error) {
+        console.error('Error al manejar el registro/carga de usuario en MySQL:', error.message);
+        return { success: false, message: 'Error al procesar usuario en MySQL: ' + error.message, user: null };
+    }
+}
+
+async function updateUserData(id_usuario, dataToUpdate) {
+    const connected = await isDatabaseConnected();
+    if (!connected) {
+        return { success: false, message: 'No hay conexión a la base de datos MySQL para actualizar.' };
+    }
+
+    try {
+        let fields = [];
+        let values = [];
+        for (const key in dataToUpdate) {
+            if (dataToUpdate.hasOwnProperty(key) && key !== 'id_usuario') {
+                fields.push(`${key} = ?`);
+                values.push(dataToUpdate[key]);
+            }
+        }
+        values.push(id_usuario);
+
+        if (fields.length === 0) {
+            return { success: false, message: 'No hay datos para actualizar.' };
+        }
+
+        const query = `UPDATE usuario SET ${fields.join(', ')} WHERE id_usuario = ?`;
+        const [result] = await pool.query(query, values);
+
+        if (result.affectedRows > 0) {
+            console.log(`Usuario con ID ${id_usuario} actualizado exitosamente en MySQL.`);
+            return { success: true, message: 'Usuario actualizado exitosamente.' };
+        } else {
+            console.warn(`Usuario con ID ${id_usuario} no encontrado o no se realizaron cambios en MySQL.`);
+            return { success: false, message: 'Usuario no encontrado o no se realizaron cambios.' };
+        }
+    } catch (error) {
+        console.error('Error al actualizar usuario en MySQL:', error.message);
+        return { success: false, message: 'Error al actualizar usuario en MySQL: ' + error.message };
+    }
+}
+
+module.exports = {
+    initializeDatabase,
+    isDatabaseConnected,
+    handleUserLoginOrRegisterOnline,
+    updateUserData
+};

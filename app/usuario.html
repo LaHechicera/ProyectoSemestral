@@ -1,117 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pantalla de Inicio</title>
-  <link rel="stylesheet" href="usuariocss.css" />
-  <style>
-    body {
-      background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Inicio</title>
+    <link rel="stylesheet" href="usuariocss.css" />
+    <style>
+        body {
+            background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
 
-    /* Estilos de la ventana emergente */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 20% auto;
-      padding: 20px;
-      width: 50%;
-      text-align: center;
-      border-radius: 10px;
-    }
-    .modal button {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #ff4c4c;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+        /* Estilos de la ventana emergente */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex; /* Añadir para centrar el contenido */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            width: 50%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .modal button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .modal button:hover {
+            background-color: #e03b3b;
+        }
+    </style>
 </head>
 <body>
 
-  
+    <div id="modalDBStatus" class="modal">
+        <div class="modal-content">
+            <h2>Estado de la Base de Datos</h2>
+            <p id="modalMessage"></p>
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
 
-  <h2>Ingresa tu nombre</h2>
-  <form onsubmit="guardarUsuario(event)">
-    <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required>
-    <button type="submit">Iniciar</button>
-  </form>
+    <div style="text-align: center; margin-top: 100px;">
+        <h2>Ingresa tu nombre</h2>
+        <form onsubmit="guardarUsuario(event)">
+            <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required
+                   style="padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; width: 250px;">
+            <button type="submit"
+                    style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Iniciar
+            </button>
+        </form>
+    </div>
 
-  <script>
-    // Mostrar ventana emergente con el estado de la base de datos
-    document.addEventListener('DOMContentLoaded', () => {
-        if (window.electron) {
-            console.log('usuario.html ha sido cargado');
-            
-            window.electron.onDBStatus(message => {
-                console.log('Evento recibido en usuario.html:', message);
-                
-                const modal = document.getElementById('modalDBStatus');
-                const modalMessage = document.getElementById('modalMessage');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.electron) {
+                console.log('usuario.html: DOMContentLoaded - window.electron está definido.');
 
-                if (modal && modalMessage) {
-                    modalMessage.textContent = message;
-                    modal.style.display = 'block'; // Mostrar la ventana emergente
-                } else {
-                    console.error('No se encontró la ventana emergente en usuario.html.');
-                }
-            });
-        } else {
-            console.error('window.electron no está definido.');
-        }
-    });
+                window.electron.onDBStatus(message => {
+                    console.log('usuario.html: Evento "db-status" recibido:', message);
 
-    function cerrarModal() {
-        document.getElementById('modalDBStatus').style.display = 'none';
-    }
+                    const modal = document.getElementById('modalDBStatus');
+                    const modalMessage = document.getElementById('modalMessage');
 
-    // ✅ Función para registrar usuario
-    async function guardarUsuario(event) {
-        event.preventDefault();
-        const nombre = document.getElementById('usuarioInput').value;
-
-        try {
-            const response = await fetch('http://localhost:3000/registrar-usuario', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nombre })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem('usuarioId', data.usuarioId || nombre);
-                localStorage.setItem('usuarioNombre', nombre);
-                window.location.href = 'escoger.html';
+                    if (modal && modalMessage) {
+                        modalMessage.textContent = message;
+                        modal.style.display = 'flex';
+                        console.log('usuario.html: Modal de estado de DB mostrado.');
+                    } else {
+                        console.error('usuario.html: Error - No se encontró la ventana emergente de estado de DB.');
+                    }
+                });
             } else {
-                alert(data.mensaje || 'Ocurrió un error al registrar el usuario.');
+                console.error('usuario.html: Error - window.electron no está definido.');
             }
-        } catch (err) {
-            console.error('🚨 Error en la solicitud:', err);
-            alert('No se pudo conectar con el servidor. Se usará el modo offline.');
+        });
 
-            //Guardar usuario en localStorage en caso de fallo de conexión
-            localStorage.setItem('usuarioId', nombre);
-            localStorage.setItem('usuarioNombre', nombre);
-            window.location.href = 'escoger.html';
+        function cerrarModal() {
+            console.log('usuario.html: Cerrando modal de estado de DB.');
+            document.getElementById('modalDBStatus').style.display = 'none';
         }
-    }
-  </script>
+
+        async function guardarUsuario(event) {
+            event.preventDefault();
+            console.log('usuario.html: 1. Función guardarUsuario iniciada.');
+            const nombre = document.getElementById('usuarioInput').value;
+            const modal = document.getElementById('modalDBStatus');
+            const modalMessage = document.getElementById('modalMessage');
+
+            if (!nombre) {
+                modalMessage.textContent = 'Por favor, ingresa un nombre de usuario.';
+                modal.style.display = 'flex';
+                console.warn('usuario.html: Nombre de usuario vacío. Deteniendo el registro.');
+                return;
+            }
+
+            try {
+                console.log('usuario.html: 2. Intentando llamar a window.api.registrarUsuario con nombre:', nombre);
+                const resultado = await window.api.registrarUsuario({
+                    usuarioNombre: nombre,
+                    selectStory: null,
+                    genero: null,
+                    decision: null,
+                    tiempo_juego: 0
+                });
+                console.log('usuario.html: 3. Resultado de registrarUsuario recibido:', resultado);
+
+                if (resultado && resultado.success) {
+                    localStorage.setItem('usuarioId', resultado.user ? resultado.user.id_usuario : null); // Asegura que 'user' existe
+                    localStorage.setItem('usuarioNombre', nombre);
+                    console.log('usuario.html: 4. Datos de usuario guardados en localStorage:', { id: resultado.user ? resultado.user.id_usuario : 'N/A', nombre: nombre });
+
+                    if (resultado.sincronizado) {
+                        modalMessage.textContent = `Usuario registrado correctamente. Redirigiendo...`;
+                        console.log('usuario.html: 5. Mensaje de éxito (online) establecido.');
+                    } else {
+                        modalMessage.innerHTML = `Modo offline.<br>Tu progreso se guardará localmente. Redirigiendo...`;
+                        console.log('usuario.html: 5. Mensaje de éxito (offline) establecido.');
+                    }
+                    modal.style.display = 'flex'; // Mostrar el modal
+
+                    console.log('usuario.html: 6. Estableciendo redirección a escoger.html en 3 segundos...');
+                    setTimeout(() => {
+                        console.log('usuario.html: 7. Ejecutando window.location.href = "escoger.html"...');
+                        window.location.href = 'escoger.html';
+                    }, 3000);
+
+                } else {
+                    console.error('usuario.html: Fallo en el registro de usuario (resultado):', resultado);
+                    modalMessage.textContent = `Error al registrar usuario: ${resultado ? resultado.message : 'Error desconocido'}.`;
+                    modal.style.display = 'flex';
+                }
+
+            } catch (error) {
+                console.error('usuario.html: 8. Error general en la función guardarUsuario (catch block):', error);
+                modalMessage.innerHTML = `Ocurrió un error.<br>Usando modo emergencia offline.<br>Tu progreso será guardado localmente. Redirigiendo...`;
+                modal.style.display = 'flex';
+
+                const offlineId = `emergency-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                localStorage.setItem('usuarioId', offlineId);
+                localStorage.setItem('usuarioNombre', nombre);
+                console.log('usuario.html: 9. Intentando guardar offline de emergencia con ID:', offlineId);
+
+                try {
+                    await window.api.guardarOfflineEmergency({
+                        id_usuario: offlineId,
+                        usuarioNombre: nombre,
+                        selectStory: null,
+                        genero: null,
+                        decision: null,
+                        tiempo_juego: 0
+                    });
+                    console.log('usuario.html: 10. Guardado offline de emergencia exitoso.');
+                } catch (e) {
+                    console.error('usuario.html: 11. Error en fallback de guardarOfflineEmergency:', e);
+                }
+
+                console.log('usuario.html: 12. Estableciendo redirección de emergencia en 3 segundos...');
+                setTimeout(() => {
+                    console.log('usuario.html: 13. Ejecutando window.location.href = "escoger.html" (emergencia)...');
+                    window.location.href = 'escoger.html';
+                }, 3000);
+            }
+        }
+    </script>
 </body>
 </html>
