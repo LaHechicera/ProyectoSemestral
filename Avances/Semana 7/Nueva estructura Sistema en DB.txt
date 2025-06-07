@@ -1,0 +1,17 @@
+Implementando correcciones de comunicación con la base de datos para manejo de datos Online y Offline:
+
+APP./
+├── main.js
+├── preload.js        //puente entre HTML y Backend.
+├── servidor/
+│   └── registro.js
+├── db/
+│   └── database.js //Encargado de gestionar el proyecto con la base de datos.
+│   └── offline.js // Encargado de generar archivo .json para los datos ingresados temporales.
+└── Historia1Hombre.html	//Carpeta con las secuencia de la historia humano
+├── usuario.html   	//registra usuario.
+├── escoger.html		//Selección tipo personaje.
+└── db_local.js		//Se crea al no tener ese archivo y ejecutar el proyecto sin base de datos
+└── otras carpetas con HTML
+└── otros archivos
+

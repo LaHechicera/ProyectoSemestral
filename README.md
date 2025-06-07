@@ -78,7 +78,7 @@ git clone https://github.com/LaHechicera/ProyectoSemestral.git
 }
 
 ```
-7. Instalar librerias en terminal de VSC: "npm install express", "npm install mysql" y "npm install cors"
+7. Instalar librerias en terminal de VSC: "npm install express", "npm install mysql", "npm install cors", "npm install promise", "npm install mysql2"
 8. Luego en la misma consola luego de realizar todos los pasos anteriores, para iniciar la app se debe ingresar "npm start"
 
 Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito.
@@ -95,4 +95,4 @@ Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito
 |📂 Semana 4 | Commits y capacitación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%204)|
 |📂 Semana 5 | Desarrollo proyecto (BD) | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%205)|
 |📂 Semana 6 | Desarrollo y planificación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%206)|
-
+|📂 Semana 7 | Creación funciones para BD | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%207)|
