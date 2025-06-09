@@ -5,15 +5,33 @@
 
 body {
   font-family: 'God of War', sans-serif;
-  color: rgb(4, 4, 48);
+  color: rgba(7, 223, 61, 0.836);
 }
 body h1{
-  filter: drop-shadow(1px 1px 3px white);
+  filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0));
   display: flex;
   justify-content: center; 
 }
-body p{
-  filter: drop-shadow(1px 1px 3px white);
+/*body p{
+  filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0));
+  display: flex;
+  justify-content: flex-start;
+}*/
+
+.container {
+  display: flex;
+}
+
+.left-block {
+  flex: 1;
+}
+
+.right-block {
+  flex: 1;
+}
+
+.text-content {
+  max-width: 600px; /* Para controlar el ancho del texto */
 }
 
 nav button{
