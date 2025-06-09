@@ -11,6 +11,7 @@ body {
     align-items: center; /* Centra los elementos horizontalmente */
     height: 100vh; /* Ocupa toda la pantalla */
     margin: 0;
+    overflow: hidden;
 }
 
 h1 {

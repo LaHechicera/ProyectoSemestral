@@ -7,8 +7,13 @@ body {
   font-family: 'God of War', sans-serif;
   background-image: url('./ImagenesFigmaElfo/personajeEscogerElfo.avif');
   background-size: cover; /* Hace que la imagen cubra todo el fondo */
+  background-position: center;
   background-repeat: no-repeat; /*hace que no se repita el fondo*/
-}
+  height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
+  width: 100vw;
+  overflow: hidden;
+  } 
+
 
 body h1{
 filter: drop-shadow(1px 1px 3px white);

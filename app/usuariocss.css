@@ -6,6 +6,7 @@
 body {
     font-family: 'God of War', sans-serif;
     filter: drop-shadow(1px 1px 3px rgb(255, 255, 255));
+    overflow: hidden;
     }
 
 body h2{
