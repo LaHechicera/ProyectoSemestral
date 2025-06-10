@@ -6,25 +6,19 @@
     <title>Pantalla de Inicio</title>
     <link rel="stylesheet" href="usuariocss.css" />
     <style>
-        body {
-            background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
-            background-size: cover; /* Hace que la imagen cubra todo el fondo */
-            background-position: center;
-            background-repeat: no-repeat; /*hace que no se repita el fondo*/
-            height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
-            width: 100vw;
-        }
+        
 
         /* Estilos de la ventana emergente */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, -50%); 
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.478);
             display: flex; /* Añadir para centrar el contenido */
             justify-content: center;
             align-items: center;
@@ -63,15 +57,11 @@
         </div>
     </div>
 
-    <div style="text-align: center; margin-top: 100px;">
+    <div class="container">
         <h2>Ingresa tu nombre</h2>
         <form onsubmit="guardarUsuario(event)">
-            <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required
-                   style="padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; width: 250px;">
-            <button type="submit"
-                    style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Iniciar
-            </button>
+            <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required>
+            <button type="submit">Iniciar</button>
         </form>
     </div>
 
