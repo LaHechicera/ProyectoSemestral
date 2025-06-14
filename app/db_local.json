@@ -62,5 +62,29 @@
     "genero": null,
     "decision": null,
     "tiempo_juego": 0
+  },
+  {
+    "id_usuario": "offline-1749914629240-ichdg8tmo",
+    "usuarioNombre": "ngrljirfñ",
+    "selectStory": null,
+    "genero": null,
+    "decision": null,
+    "tiempo_juego": 0
+  },
+  {
+    "id_usuario": "offline-1749914766621-hgql72jot",
+    "usuarioNombre": "dfhjgkvhbjl",
+    "selectStory": null,
+    "genero": null,
+    "decision": null,
+    "tiempo_juego": 0
+  },
+  {
+    "id_usuario": "offline-1749920026332-vv232l7s0",
+    "usuarioNombre": "ñojhyfd",
+    "selectStory": null,
+    "genero": null,
+    "decision": null,
+    "tiempo_juego": 0
   }
 ]
