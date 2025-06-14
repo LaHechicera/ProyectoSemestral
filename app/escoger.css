@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'God of War';
+  src: url('./Fuentes/GODOFWAR.TTF');
+}
+
+body {
+  font-family: 'God of War', sans-serif;
+  background-image: url('./ImagenesFigmaElfo/Portada.jpg');
+  background-size: cover; /* Hace que la imagen cubra todo el fondo */
+  background-position: center;
+  background-repeat: no-repeat; /* Hace que no se repita el fondo */
+  height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
+  width: 100vw;
+  overflow: hidden;
+  margin: 0; /* Elimina el margen predeterminado del body */
+  padding: 0; /* Elimina el padding predeterminado del body */
+}
+
+/* --- Contenedor principal para la división vertical --- */
+.main-container {
+  display: flex; /* Habilita Flexbox para los paneles */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+}
+
+.left-panel {
+  flex: 1; /* Ocupa la mitad del espacio disponible */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  /* Puedes añadir un padding o un background-color si quieres separar visualmente los paneles */
+  /* background-color: rgba(0, 0, 0, 0.5); */ /* Ejemplo de fondo semi-transparente */
+}
+
+.right-panel {
+  flex: 1; /* Ocupa la otra mitad del espacio disponible */
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente en el panel */
+  align-items: flex-start; /* Alinea los elementos a la izquierda del panel */
+  padding-left: 20px; /* Un poco de espacio desde el borde izquierdo del panel */
+  padding-right: 20px; /* Un poco de espacio desde el borde derecho del panel */
+}
+
+/* --- Estilos generales para el título y los botones --- */
+
+body h1 {
+  filter: drop-shadow(1px 1px 2px rgb(0, 0, 0));
+  color: rgb(255, 255, 255);; /* Asegura que el título sea visible */
+  margin: 0; /* Elimina el margen predeterminado para centrarlo bien */
+  text-align: center; /* Asegura que el texto dentro del h1 esté centrado si ocupa varias líneas */
+}
+
+body button {
+  background-color: #252525;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /* Hace que el cursor se convierta en una manito */
+  margin: 0; /* Asegura que no haya márgenes que interfieran */
+}
+
+button:hover {
+  background-color: rgb(0, 91, 30);
+  color: #ffffff;
+  box-shadow: 0 0 25px #fec1958c;
+}
+
+/* --- Clases para grupos de botones y secciones de género --- */
+
+.button-group {
+  display: flex; /* Para que los botones se coloquen uno al lado del otro */
+  gap: 40px; /* Espacio de 10px entre los botones */
+  margin-bottom: 15px; /* Espacio debajo del grupo de botones */
+}
+
+.gender-section {
+  margin-top: 0; /* Asegura que no haya margen superior indeseado */
+}
+
+.gender-section h2 {
+  color: rgb(255, 255, 255);; /* Asegura que el título sea visible sobre el fondo oscuro */
+  filter: drop-shadow(5px 5px 5px rgb(2, 2, 2)); /* Sombra para mejor lectura */
+  margin-top: 0; /* Elimina el margen superior por defecto de los h2 */
+  margin-bottom: 12px; /* Espacio entre el título y los botones de género */
+}

@@ -3,11 +3,15 @@
 <head>
   <title>Choices of an Adventurer</title>
   <link rel="stylesheet" href="indexstyle.css" />
+  <link rel="stylesheet" href="custom-titlebar.css" />
   <style>
     body {
-    background-image: url('./ImagenesFigmaElfo/Inicio.jpg');
+    background-image: url('./ImagenesFigmaElfo/PortadaIndex.jpg');
     background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center;
     background-repeat: no-repeat; /*hace que no se repita el fondo*/
+    height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
+    width: 100vw;
   }
 </style>
   <script>
@@ -17,15 +21,53 @@
         console.log('Loading page: ', page);
         ipcRenderer.send('navigate', page);
     }
+    document.addEventListener('DOMContentLoaded', () => {
+    // Solo necesitamos los ID de los botones que existen ahora
+    const restartBtn = document.getElementById('restart-btn');
+    const quitBtn = document.getElementById('quit-btn');
+    const titlebar = document.querySelector('.custom-titlebar'); // Mantenemos el doble clic en la barra
+
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            window.electronAPI.restartApp();
+        });
+    }
+    if (quitBtn) {
+        quitBtn.addEventListener('click', () => {
+            window.electronAPI.quitApp();
+        });
+    }
+    if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+        titlebar.addEventListener('dblclick', () => {
+            window.electronAPI.maximizeRestoreWindow();
+        });
+    }
+    // No necesitamos más los listeners para minimizeBtn, maximizeRestoreBtn, closeBtn
+});
   </script>
 </head>
 <body>
+  <div class="custom-titlebar">
+    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
+    <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button> 
+      </div>
+</div>
+</div>
   <h1>Choices of an Adventurer</h1>
+  <div class="container">
+  <div class="left-block">
+    <div class="text-content">
   <p>Bienvenido a nuestro juego proyecto</p>
   <p>Este es un juego con 2 historias únicas, tipo aventura gráfica de toma de desiciones, de las cuales alguna de estas podrian llevarte a la muerte!</p> 
   <p>Buen viaje aventurero!</p>
+   </div>
+  </div>
+  <div class="right-block"></div>
+</div>
   <nav>
-    <button onclick="window.location.href='usuario.html'">Iniciar aventura</button>
+    <button onclick="window.location.href='usuario.html'">¡Inicia tu aventura!</button>
   </nav>
 </body>
 </html>

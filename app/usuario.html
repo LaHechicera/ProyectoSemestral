@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla de Inicio</title>
     <link rel="stylesheet" href="usuariocss.css" />
+    <link rel="stylesheet" href="custom-titlebar.css" />
+
     <style>
-        body {
-            background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+        
 
         /* Estilos de la ventana emergente */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, -50%); 
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.478);
             display: flex; /* Añadir para centrar el contenido */
             justify-content: center;
             align-items: center;
@@ -49,8 +48,41 @@
             background-color: #e03b3b;
         }
     </style>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Solo necesitamos los ID de los botones que existen ahora
+    const restartBtn = document.getElementById('restart-btn');
+    const quitBtn = document.getElementById('quit-btn');
+    const titlebar = document.querySelector('.custom-titlebar'); // Mantenemos el doble clic en la barra
+
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            window.electronAPI.restartApp();
+        });
+    }
+    if (quitBtn) {
+        quitBtn.addEventListener('click', () => {
+            window.electronAPI.quitApp();
+        });
+    }
+    if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+        titlebar.addEventListener('dblclick', () => {
+            window.electronAPI.maximizeRestoreWindow();
+        });
+    }
+    // No necesitamos más los listeners para minimizeBtn, maximizeRestoreBtn, closeBtn
+});
+    </script>
 </head>
 <body>
+    <div class="custom-titlebar">
+    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
+    <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button> 
+      </div>
+</div>
+</div>
 
     <div id="modalDBStatus" class="modal">
         <div class="modal-content">
@@ -60,15 +92,11 @@
         </div>
     </div>
 
-    <div style="text-align: center; margin-top: 100px;">
+    <div class="container">
         <h2>Ingresa tu nombre</h2>
         <form onsubmit="guardarUsuario(event)">
-            <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required
-                   style="padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; width: 250px;">
-            <button type="submit"
-                    style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Iniciar
-            </button>
+            <input type="text" id="usuarioInput" placeholder="Tu nombre aquí" required>
+            <button type="submit">Iniciar</button>
         </form>
     </div>
 

@@ -11,6 +11,7 @@ body {
     align-items: center; /* Centra los elementos horizontalmente */
     height: 100vh; /* Ocupa toda la pantalla */
     margin: 0;
+    overflow: hidden;
 }
 
 h1 {
@@ -21,16 +22,16 @@ h1 {
 }
 
 div button {
-    background-color: #252525;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: px;
-    cursor: pointer; 
+  background-color: #3c3c3c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+button:hover{
+    background-color: rgb(10, 63, 0);
+    color: #ffffff;
+    box-shadow: 0 0 25px #fec1958c;
   }
-  
-  button:hover{
-      background-color: rgb(63, 0, 0);
-      color: #ffffff;
-      box-shadow: 0 0 25px #fec1958c;
-    }

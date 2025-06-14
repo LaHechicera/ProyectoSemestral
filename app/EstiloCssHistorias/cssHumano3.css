@@ -6,6 +6,7 @@
 body {
     font-family: 'God of War', sans-serif;
     filter: drop-shadow(1px 1px 3px black);
+    overflow: hidden;
 }
 
 /* Hago que el contenedor se vaya hacia la parte inferior */

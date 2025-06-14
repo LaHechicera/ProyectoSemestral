@@ -6,7 +6,19 @@
 body {
     font-family: 'God of War', sans-serif;
     filter: drop-shadow(1px 1px 3px rgb(255, 255, 255));
-    }
+    overflow: hidden;
+    background-color: black;
+    background: url('./ImagenesFigmaElfo/escogerPj.jpeg');
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center;
+    background-repeat: no-repeat; /*hace que no se repita el fondo*/
+    height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        }
+
 
 body h2{
     filter: drop-shadow(1px 1px 3px white);
@@ -31,9 +43,15 @@ body button{
     }
     
 button:hover{
-      background-color: rgb(63, 0, 0);
+      background-color: rgb(0, 63, 21);
       color: #ffffff;
       box-shadow: 0 0 25px #fec1958c;
     }
     
-    
+input {
+    padding: 15px; /* Aumenta el espacio interno para que se vea más grande */
+    width: 150px; /* Cambia el ancho a 350px (ajústalo según tu diseño) */
+    border: 2px solid #009405ce; /* Bordes más visibles */
+    border-radius: 15px; /* Bordes redondeados */
+    font-size: 14px; /* Hace que el texto dentro del input sea más grande */
+}

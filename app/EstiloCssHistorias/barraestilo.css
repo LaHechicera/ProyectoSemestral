@@ -1,0 +1,91 @@
+/* custom-titlebar.css */
+
+.custom-titlebar {
+    -webkit-app-region: drag;
+    height: 32px;
+    background-color: #2b2e3b;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: flex-end; /* ¡IMPORTANTE! Alinea los ítems al final (derecha) */
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+    user-select: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.custom-titlebar-title {
+    -webkit-app-region: no-drag;
+    /* Para que el título se mantenga a la izquierda si no hay nada a su izquierda,
+       o para que se centre si le das un margin-left: auto; al .app-controls */
+    flex-grow: 1; /* Permite que el título ocupe el espacio restante a la izquierda */
+    text-align: left; /* Alinea el texto del título a la izquierda por defecto */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding-left: 10px; /* Un poco de padding para que no se pegue al borde izquierdo */
+}
+
+/* Solo mantendremos el contenedor de los botones de la aplicación */
+.app-controls {
+    display: flex;
+    -webkit-app-region: no-drag;
+    /* margin-left: auto; /* Esto empujaría este grupo completamente a la derecha si el título no fuera flex-grow */
+}
+
+/* Estilos base para los botones de la barra de título */
+.app-controls button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px; /* Espacio entre el botón de reinicio y el de cerrar */
+    padding: 0;
+    border-radius: 3px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Estilos específicos para el botón de cerrar aplicación */
+.app-controls button.close-button:hover {
+    background-color: #e81123;
+    color: white;
+}
+
+/* Estilos para el botón de reinicio */
+.app-controls #restart-btn {
+    font-size: 1.2em; /* Un poco más grande para el símbolo */
+}
+.app-controls #restart-btn:hover {
+    background-color: rgba(60, 179, 113, 0.5); /* Un verde sutil para hover del reinicio */
+    color: white;
+}
+
+/* Asegura que el contenido principal de la página comience después de la barra de título */
+body {
+    /* ... Tus propiedades de font-family, background-image, etc. ... */
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding-top: 32px; /* Espacio para la barra de título fija */
+}
+
+.main-container {
+    height: calc(100vh - 32px); /* La altura restante de la ventana */
+    /* ... Tus otras propiedades para .main-container ... */
+}

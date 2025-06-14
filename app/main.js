@@ -8,8 +8,9 @@ let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 1024,
+        height: 768,
+        frame: false, // ¡IMPORTANTE! Esto elimina el marco nativo de la ventana
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: false,
@@ -33,7 +34,49 @@ function createWindow() {
             }
         }
     });
+    // --- Manejadores IPC para los controles de la ventana personalizados ---
+    ipcMain.on('minimize-window', () => {
+        mainWindow.minimize();
+    });
+
+    ipcMain.on('maximize-restore-window', () => {
+        if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
+        } else {
+            mainWindow.maximize();
+        }
+    });
+
+    ipcMain.on('close-window', () => {
+        mainWindow.close();
+    });
+
+    ipcMain.on('double-click-titlebar', () => {
+        if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
+        } else {
+            mainWindow.maximize();
+        }
+    });
+
+    // --- Nuevos manejadores IPC para los botones de la aplicación (reiniciar/salir) ---
+    ipcMain.on('restart-app', () => {
+        mainWindow.loadFile('index.html'); // Simplemente recarga la página de inicio
+        console.log('Aplicación reiniciada (cargando index.html)');
+    });
+
+    ipcMain.on('quit-app', () => {
+        app.quit(); // Cierra completamente la aplicación Electron
+    });
+
+    // Limpiar la referencia a la ventana cuando se cierra
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+
+    return mainWindow;
 }
+
 
 app.whenReady().then(() => {
     createWindow();
