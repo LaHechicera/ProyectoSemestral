@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla de Inicio</title>
     <link rel="stylesheet" href="usuariocss.css" />
+    <link rel="stylesheet" href="custom-titlebar.css" />
+
     <style>
         
 
@@ -46,8 +48,41 @@
             background-color: #e03b3b;
         }
     </style>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Solo necesitamos los ID de los botones que existen ahora
+    const restartBtn = document.getElementById('restart-btn');
+    const quitBtn = document.getElementById('quit-btn');
+    const titlebar = document.querySelector('.custom-titlebar'); // Mantenemos el doble clic en la barra
+
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            window.electronAPI.restartApp();
+        });
+    }
+    if (quitBtn) {
+        quitBtn.addEventListener('click', () => {
+            window.electronAPI.quitApp();
+        });
+    }
+    if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+        titlebar.addEventListener('dblclick', () => {
+            window.electronAPI.maximizeRestoreWindow();
+        });
+    }
+    // No necesitamos más los listeners para minimizeBtn, maximizeRestoreBtn, closeBtn
+});
+    </script>
 </head>
 <body>
+    <div class="custom-titlebar">
+    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
+    <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button> 
+      </div>
+</div>
+</div>
 
     <div id="modalDBStatus" class="modal">
         <div class="modal-content">
