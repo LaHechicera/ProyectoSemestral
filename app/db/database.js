@@ -42,6 +42,7 @@ async function initializeDatabase() {
     }
 }
 
+//Verifica si la base de datos está conectada e inicializada.
 async function isDatabaseConnected() {
     if (pool) {
         try {
@@ -59,6 +60,7 @@ async function isDatabaseConnected() {
     return await initializeDatabase();
 }
 
+//Registra o carga un perfil de usuario en la base de datos MySQL.
 async function handleUserLoginOrRegisterOnline(userData) {
     const { usuarioNombre } = userData;
     const connected = await isDatabaseConnected();
@@ -109,6 +111,7 @@ async function handleUserLoginOrRegisterOnline(userData) {
     }
 }
 
+//Método para actualizar datos de usuario en MySQL.
 async function updateUserData(id_usuario, dataToUpdate) {
     const connected = await isDatabaseConnected();
     if (!connected) {
@@ -150,5 +153,5 @@ module.exports = {
     initializeDatabase,
     isDatabaseConnected,
     handleUserLoginOrRegisterOnline,
-    updateUserData
+    updateUserData //exportar la función de decision.
 };

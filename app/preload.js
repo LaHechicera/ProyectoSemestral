@@ -1,8 +1,9 @@
-// preload.js (Asegúrate de que este sea el contenido)
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
-    onDBStatus: (callback) => ipcRenderer.on('db-status', (event, message) => callback(message))
+    onDBStatus: (callback) => {
+        ipcRenderer.on('db-status', (event, message) => callback(message));
+    }
 });
 
 contextBridge.exposeInMainWorld('api', {
@@ -22,4 +23,14 @@ contextBridge.exposeInMainWorld('electronAPI', {
     quitApp: () => ipcRenderer.send('quit-app'), // Este es el que usa tu botón de salida 'X'
     // Función para guardar decisión (usada por selectStory)
     guardarDecision: (data) => ipcRenderer.send('guardar-decision', data) // ¡Nuevo!
+=======
+    registrarUsuario: (userData) => {
+        return ipcRenderer.invoke('registrar-usuario', userData);
+    },
+    guardarOfflineEmergency: (userData) => {
+        return ipcRenderer.invoke('guardar-offline-emergency', userData);
+    },
+    saveStoryDecision: (userId, decisionText) => {
+        return ipcRenderer.invoke('save-story-decision', userId, decisionText);
+    }
 });
