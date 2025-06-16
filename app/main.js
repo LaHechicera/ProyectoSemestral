@@ -61,19 +61,18 @@ function createWindow() {
 
     // --- Nuevos manejadores IPC para los botones de la aplicación (reiniciar/salir) ---
     ipcMain.on('restart-app', () => {
-        mainWindow.loadFile('index.html'); // Simplemente recarga la página de inicio
+        mainWindow.loadFile('index.html');
         console.log('Aplicación reiniciada (cargando index.html)');
     });
 
-    ipcMain.on('quit-app', () => {
-        app.quit(); // Cierra completamente la aplicación Electron
+    ipcMain.on('quit-app', () => { // ¡Este es el listener para el botón de salida de la app!
+        app.quit();
     });
 
-    // Limpiar la referencia a la ventana cuando se cierra
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
-
+    
     return mainWindow;
 }
 

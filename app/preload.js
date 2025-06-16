@@ -10,9 +10,16 @@ contextBridge.exposeInMainWorld('api', {
     guardarOfflineEmergency: (userData) => ipcRenderer.invoke('guardar-offline-emergency')
 });
 
-// Exponemos una nueva API para los controles de la ventana
+// Aquí exponemos los controles de la ventana y los botones personalizados
 contextBridge.exposeInMainWorld('electronAPI', {
-    // Nuevas funciones para los botones personalizados
+    // Controles de ventana
+    minimizeWindow: () => ipcRenderer.send('minimize-window'),
+    maximizeRestoreWindow: () => ipcRenderer.send('maximize-restore-window'),
+    closeWindow: () => ipcRenderer.send('close-window'), // Aunque no tengas el botón, la función existe
+    doubleClickTitlebar: () => ipcRenderer.send('double-click-titlebar'),
+    // Botones de aplicación personalizados
     restartApp: () => ipcRenderer.send('restart-app'),
-    quitApp: () => ipcRenderer.send('quit-app')
+    quitApp: () => ipcRenderer.send('quit-app'), // Este es el que usa tu botón de salida 'X'
+    // Función para guardar decisión (usada por selectStory)
+    guardarDecision: (data) => ipcRenderer.send('guardar-decision', data) // ¡Nuevo!
 });
