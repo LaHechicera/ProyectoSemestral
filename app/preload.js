@@ -7,13 +7,10 @@ contextBridge.exposeInMainWorld('electron', {
 });
 
 contextBridge.exposeInMainWorld('api', {
-    registrarUsuario: (userData) => {
-        return ipcRenderer.invoke('registrar-usuario', userData);
-    },
-    guardarOfflineEmergency: (userData) => {
-        return ipcRenderer.invoke('guardar-offline-emergency', userData);
-    },
-    saveStoryDecision: (userId, decisionText) => {
-        return ipcRenderer.invoke('save-story-decision', userId, decisionText);
-    }
+    registrarUsuario: (userData) => ipcRenderer.invoke('registrar-usuario', userData),
+    guardarOfflineEmergency: (userData) => ipcRenderer.invoke('guardar-offline-emergency', userData),
+    saveStoryDecision: (userId, decisionText) => ipcRenderer.invoke('save-story-decision', userId, decisionText),
+    updateUserStatus: (userId, status) => ipcRenderer.invoke('update-user-status', userId, status),
+    fetchUserData: (userId) => ipcRenderer.invoke('fetch-user-data', userId),
+    updateUserPreferences: (userId, selectStory, genero) => ipcRenderer.invoke('update-user-preferences', userId, selectStory, genero)
 });
