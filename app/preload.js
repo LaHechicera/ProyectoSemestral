@@ -8,6 +8,13 @@ contextBridge.exposeInMainWorld('electron', {
 
 contextBridge.exposeInMainWorld('api', {
     registrarUsuario: (userData) => ipcRenderer.invoke('registrar-usuario', userData),
+
+    guardarOfflineEmergency: (userData) => ipcRenderer.invoke('guardar-offline-emergency', userData),
+    saveStoryDecision: (userId, decisionText) => ipcRenderer.invoke('save-story-decision', userId, decisionText),
+    updateUserStatus: (userId, status) => ipcRenderer.invoke('update-user-status', userId, status),
+    fetchUserData: (userId) => ipcRenderer.invoke('fetch-user-data', userId),
+    updateUserPreferences: (userId, selectStory, genero) => ipcRenderer.invoke('update-user-preferences', userId, selectStory, genero)
+
     guardarOfflineEmergency: (userData) => ipcRenderer.invoke('guardar-offline-emergency')
 });
 
@@ -23,7 +30,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     quitApp: () => ipcRenderer.send('quit-app'), // Este es el que usa tu botón de salida 'X'
     // Función para guardar decisión (usada por selectStory)
     guardarDecision: (data) => ipcRenderer.send('guardar-decision', data) // ¡Nuevo!
-=======
+
     registrarUsuario: (userData) => {
         return ipcRenderer.invoke('registrar-usuario', userData);
     },
@@ -33,4 +40,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
     saveStoryDecision: (userId, decisionText) => {
         return ipcRenderer.invoke('save-story-decision', userId, decisionText);
     }
+
 });
