@@ -48,11 +48,10 @@ async function syncOfflineData() {
             const loginResult = await handleUserLoginOrRegisterOnline({ usuarioNombre: user.usuarioNombre });
 
             if (loginResult.success && loginResult.user) {
-                // Usuario ya existía o fue creado, ahora actualiza sus campos con los datos offline
-                // Filtramos campos que no queremos actualizar (ej. id_usuario, usuarioNombre ya que se usan para buscar/insertar)
+
                 const dataToUpdate = { ...user };
-                delete dataToUpdate.id_usuario; // No actualizar el ID
-                delete dataToUpdate.usuarioNombre; // No actualizar el nombre de usuario (es la clave)
+                delete dataToUpdate.id_usuario;
+                delete dataToUpdate.usuarioNombre;
 
                 if (Object.keys(dataToUpdate).length > 0) { // Solo si hay datos para actualizar
                     const updateResult = await updateUserData(loginResult.user.id_usuario, dataToUpdate);
