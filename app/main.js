@@ -30,6 +30,47 @@ function createWindow() {
             const syncResult = await syncOfflineData();
         }
     });
+    // --- Manejadores IPC para los controles de la ventana personalizados ---
+    ipcMain.on('minimize-window', () => {
+        mainWindow.minimize();
+    });
+
+    ipcMain.on('maximize-restore-window', () => {
+        if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
+        } else {
+            mainWindow.maximize();
+        }
+    });
+
+    ipcMain.on('close-window', () => {
+        mainWindow.close();
+    });
+
+    ipcMain.on('double-click-titlebar', () => {
+        if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
+        } else {
+            mainWindow.maximize();
+        }
+    });
+
+    // --- Nuevos manejadores IPC para los botones de la aplicación (reiniciar/salir) ---
+    ipcMain.on('restart-app', () => {
+        mainWindow.loadFile('index.html');
+        console.log('Aplicación reiniciada (cargando index.html)');
+    });
+
+    ipcMain.on('quit-app', () => { // ¡Este es el listener para el botón de salida de la app!
+        app.quit();
+    });
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+    
+    return mainWindow;
+
 }
 
 app.whenReady().then(() => {
