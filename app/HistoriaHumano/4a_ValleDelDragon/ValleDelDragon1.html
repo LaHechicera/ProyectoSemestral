@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../../EstiloCssHistorias/cssHumano2.css"/>
     <style>
         body{
+            background: url('../../ImagenesFigmaHumano/ValleDragon1.jpg');
             background-size: cover; /* Hace que la imagen cubra todo el fondo */
     background-position: center;
     background-repeat: no-repeat; /*hace que no se repita el fondo*/
@@ -25,10 +26,11 @@
             gustas unirte. </p>
             </div>
         <div class="botones"></div>
-        <button onclick="window.location.href='ValleDelDragon2.html'">Aceptar pelea</button>
-        <button onclick="window.location.href='../4b_Aldea/Aldea1.html'">Ignorarlos</button>
+        <button class="decision-button" data-target-url='ValleDelDragon2.html'>Aceptar pelea</button>
+        <button class="decision-button" data-target-url='../4b_Aldea/Aldea1.html'>Ignorarlos</button>
             </div>
         </div>
     </div>
+    <script src="../../HistoryLogic.js"></script>
     </body>
 </html>

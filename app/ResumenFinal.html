@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de tu Historia</title>
+    <link rel="stylesheet" href="./resumenFinal.css"/>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="container">
+        <h1 class="text-4xl font-bold mb-6 text-yellow-300">¡Fin de tu Historia!</h1>
+        <div id="loadingMessage" class="text-lg text-white">Cargando tu resumen...</div>
+        <div id="summaryContent" class="hidden">
+            <h2 id="userName" class="text-3xl font-semibold mb-4 text-blue-300"></h2>
+            <!-- Elementos para mostrar Raza y Género -->
+            <p id="storyType" class="info-text"></p>
+            <p id="gender" class="info-text"></p>
+            <h3 class="text-xl font-medium mb-3 text-white">Tus Decisiones:</h3>
+            <ul id="decisionsList" class="list-none p-0 mt-4">
+                
+                <!--Decisiones-->
+            </ul>
+        </div>
+        <button id="newGameButton" class="px-6 py-3 rounded-xl shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75">
+            Nuevo Comienzo
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userId = localStorage.getItem('usuarioId');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const summaryContent = document.getElementById('summaryContent');
+            const userNameElement = document.getElementById('userName');
+            const storyTypeElement = document.getElementById('storyType');
+            const genderElement = document.getElementById('gender');
+            const decisionsList = document.getElementById('decisionsList');
+            const newGameButton = document.getElementById('newGameButton');
+
+            if (!userId) {
+                loadingMessage.textContent = 'Error: ID de usuario no encontrado. Inicia una nueva historia.';
+                summaryContent.classList.remove('hidden');
+                return;
+            }
+
+            if (window.api && typeof window.api.fetchUserData === 'function') {
+                try {
+                    const response = await window.api.fetchUserData(userId);
+
+                    if (response && response.success && response.user) {
+                        const userData = response.user;
+                        
+                        loadingMessage.classList.add('hidden');
+                        summaryContent.classList.remove('hidden');
+
+                        userNameElement.textContent = `¡Hola, ${userData.usuarioNombre || 'Desconocido'}!`;
+                        storyTypeElement.textContent = `Raza: ${userData.selectStory ? userData.selectStory.charAt(0).toUpperCase() + userData.selectStory.slice(1) : 'No especificada'}`;
+                        genderElement.textContent = `Género: ${userData.genero || 'No especificado'}`;
+
+                        if (userData.decision && Array.isArray(userData.decision) && userData.decision.length > 0) {
+                            userData.decision.forEach((decision, index) => {
+                                const listItem = document.createElement('li');
+                                listItem.textContent = `Decisión ${index + 1}: ${decision}`;
+                                decisionsList.appendChild(listItem);
+                            });
+                        } else {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = 'No tomaste decisiones en esta historia.';
+                            decisionsList.appendChild(listItem);
+                        }
+                    } else {
+                        loadingMessage.textContent = 'No se pudieron cargar los datos del usuario.';
+                        summaryContent.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    loadingMessage.textContent = 'Error al cargar tu resumen. Por favor, intenta de nuevo.';
+                    summaryContent.classList.remove('hidden');
+                }
+            } else {
+                loadingMessage.textContent = 'Error: Funcionalidad de carga de datos no disponible.';
+                summaryContent.classList.remove('hidden');
+            }
+
+            newGameButton.addEventListener('click', () => {
+                localStorage.removeItem('usuarioId');
+                localStorage.removeItem('usuarioNombre');
+
+                window.location.href = 'index.html'; 
+            });
+        });
+    </script>
+</body>
+</html>

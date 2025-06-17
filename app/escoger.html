@@ -48,32 +48,77 @@ return minutos + ' minutos';
 </head>
 <body>
 <div class="main-container">
-<div class="left-panel">
-<h1>Elige tu Historia</h1>
+    <div class="left-panel">
+        <h1>Elige tu Historia</h1>
+    </div>
+
+    <div class="right-panel">
+        <div class="button-group">
+            <button onclick="selectStory('humano')">Humano</button>
+            <button onclick="selectStory('elfo')">Elfo</button>
+        </div>
+
+        <div id="gender-section-humano" class="gender-section" style="display: none;">
+            <h2>Género (Humano)</h2>
+            <div class="button-group">
+                <button onclick="savePreferencesAndRedirect('humano', 'Hombre', './HistoriaHumano/1_Reino/Historia1Hombre.html')">Hombre</button>
+                <button onclick="savePreferencesAndRedirect('humano', 'Mujer', './HistoriaHumano/1_Reino/Historia1Mujer.html')">Mujer</button>
+            </div>
+        </div>
+
+        <div id="gender-section-elfo" class="gender-section" style="display: none;">
+            <h2>Género (Elfo)</h2>
+            <div class="button-group">
+                <button onclick="savePreferencesAndRedirect('elfo', 'Hombre', './HistoriaElfo/wakeupH.html')">Hombre</button>
+                <button onclick="savePreferencesAndRedirect('elfo', 'Mujer', './HistoriaElfo/wakeupM.html')">Mujer</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="right-panel">
-<div class="button-group">
-<button onclick="selectStory('humano')">Humano</button>
-<button onclick="selectStory('elfo')">Elfo</button>
-</div>
+<script>
 
-<div id="gender-section-humano" class="gender-section" style="display: none;">
-<h2>Género (Humano)</h2>
-<div class="button-group">
-<button onclick="window.location.href='./HistoriaHumano/1_Reino/Historia1Hombre.html'">Hombre</button>
-<button onclick="window.location.href='./HistoriaHumano/1_Reino/Historia1Mujer.html'">Mujer</button>
-</div>
-</div>
+    function selectStory(type) {
+        // Mostrar opciones según tipo
+        if (type === 'humano') {
+            document.getElementById('gender-section-humano').style.display = 'block';
+            document.getElementById('gender-section-elfo').style.display = 'none';
+        } else if (type === 'elfo') {
+            document.getElementById('gender-section-humano').style.display = 'none';
+            document.getElementById('gender-section-elfo').style.display = 'block';
+        }
+        // Almacena la raza seleccionada, el género se manejará al hacer clic en el botón de género
+        localStorage.setItem('selectedStoryType', type);
+    }
 
-<div id="gender-section-elfo" class="gender-section" style="display: none;">
-<h2>Género (Elfo)</h2>
-<div class="button-group">
-<button onclick="window.location.href='./HistoriaElfo/wakeupH.html'">Hombre</button>
-<button onclick="window.location.href='./HistoriaElfo/wakeupM.html'">Mujer</button>
-</div>
-</div>
-</div>
-</div>
+    async function savePreferencesAndRedirect(selectStoryType, genero, targetUrl) {
+        const userId = localStorage.getItem('usuarioId'); // Obtener el ID del usuario del localStorage
+
+        if (!userId) {
+            alert('Error: ID de usuario no encontrado. Por favor, inicia sesión de nuevo.');
+            window.location.href = '../../usuario.html'; // Redirige a la página de login
+            return;
+        }
+
+        if (window.api && typeof window.api.updateUserPreferences === 'function') {
+            try {
+                const result = await window.api.updateUserPreferences(userId, selectStoryType, genero);
+
+                if (result.success) {
+                    window.location.href = targetUrl;
+                } else {
+                    alert('Error al guardar tus preferencias: ' + result.message);
+                    window.location.href = targetUrl; // Redirige de todas formas
+                }
+            } catch (error) {
+                alert('Ocurrió un error al comunicarse con la aplicación: ' + error.message);
+                window.location.href = targetUrl; // Redirige de todas formas
+            }
+        } else {
+            alert('Error: Funcionalidad de guardar preferencias no disponible. Asegúrate de que Electron API esté cargada.');
+            window.location.href = targetUrl; // Redirige directamente
+        }
+    }
+</script>
 </body>
 </html>
