@@ -23,7 +23,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     quitApp: () => ipcRenderer.send('quit-app'), // Este es el que usa tu botón de salida 'X'
     // Función para guardar decisión (usada por selectStory)
     guardarDecision: (data) => ipcRenderer.send('guardar-decision', data) // ¡Nuevo!
-=======
+ }
+);
+
+    contextBridge.exposeInMainWorld('api', {
     registrarUsuario: (userData) => {
         return ipcRenderer.invoke('registrar-usuario', userData);
     },

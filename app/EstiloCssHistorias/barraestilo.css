@@ -6,12 +6,12 @@
     background-color: #2b2e3b;
     color: #e0e0e0;
     display: flex;
-    justify-content: flex-end; /* ¡IMPORTANTE! Alinea los ítems al final (derecha) */
+    justify-content: flex-end; /* ¡Esto empuja los elementos al final (derecha)! */
     align-items: center;
     padding: 0 10px;
     font-size: 14px;
     user-select: none;
-    position: fixed;
+    position: fixed; /* Mantiene la barra fija en la parte superior */
     top: 0;
     left: 0;
     width: 100%;
@@ -20,36 +20,37 @@
 }
 
 .custom-titlebar-title {
+    /* Este bloque de estilos solo se aplicará si el div .custom-titlebar-title está presente en tu HTML.
+       Si lo tienes comentado, estas reglas no tendrán efecto. */
     -webkit-app-region: no-drag;
-    /* Para que el título se mantenga a la izquierda si no hay nada a su izquierda,
-       o para que se centre si le das un margin-left: auto; al .app-controls */
-    flex-grow: 1; /* Permite que el título ocupe el espacio restante a la izquierda */
-    text-align: left; /* Alinea el texto del título a la izquierda por defecto */
+    flex-grow: 1; /* Permite que el título ocupe el espacio restante */
+    text-align: center; /* Centra el título en el espacio restante */
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    padding-left: 10px; /* Un poco de padding para que no se pegue al borde izquierdo */
 }
 
-/* Solo mantendremos el contenedor de los botones de la aplicación */
+/* Contenedor para los botones de la aplicación (reinicio y salida) */
 .app-controls {
     display: flex;
     -webkit-app-region: no-drag;
-    /* margin-left: auto; /* Esto empujaría este grupo completamente a la derecha si el título no fuera flex-grow */
+    /* Con justify-content: flex-end en el padre, este contenedor ya estará a la derecha.
+       No necesitamos márgenes extra para empujarlo. */
 }
 
-/* Estilos base para los botones de la barra de título */
+/* Estilos base para los botones individuales dentro de .app-controls */
 .app-controls button {
     background: none;
     border: none;
-    color: inherit;
-    font-size: 18px;
+    color: inherit; /* Hereda el color de texto de la barra de título */
+    font-size: 18px; /* Tamaño de los iconos/símbolos */
     width: 30px;
     height: 30px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5px; /* Espacio entre el botón de reinicio y el de cerrar */
+    margin-left: 5px; /* Espacio a la izquierda de cada botón para separarlos entre sí */
+    margin-right: 0; /* Asegura que no haya margen derecho que los empuje */
     padding: 0;
     border-radius: 3px;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -68,10 +69,10 @@
 
 /* Estilos para el botón de reinicio */
 .app-controls #restart-btn {
-    font-size: 1.2em; /* Un poco más grande para el símbolo */
+    font-size: 1.2em;
 }
 .app-controls #restart-btn:hover {
-    background-color: rgba(60, 179, 113, 0.5); /* Un verde sutil para hover del reinicio */
+    background-color: rgba(60, 179, 113, 0.5);
     color: white;
 }
 
