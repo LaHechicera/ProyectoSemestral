@@ -1,30 +1,28 @@
-/* custom-titlebar.css */
+/* barraestilo.css */
 
 .custom-titlebar {
-    -webkit-app-region: drag;
-    height: 32px;
-    background-color: #2b2e3b;
-    color: #e0e0e0;
-    display: flex;
-    justify-content: flex-end; /* ¡Esto empuja los elementos al final (derecha)! */
-    align-items: center;
-    padding: 0 10px;
+    -webkit-app-region: drag; /* Permite arrastrar la ventana desde esta barra */
+    height: 32px; /* Altura estándar de la barra de título */
+    background-color: #2b2e3b; /* Color de fondo oscuro */
+    color: #e0e0e0; /* Color de texto predeterminado para la barra */
+    display: flex; /* Habilita Flexbox para alinear los elementos internos */
+    justify-content: flex-end; /* **Mueve los elementos (botones) al final del contenedor (derecha)** */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 0 10px; /* Espaciado interno horizontal */
     font-size: 14px;
-    user-select: none;
-    position: fixed; /* Mantiene la barra fija en la parte superior */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    user-select: none; /* Evita que el texto sea seleccionable */
+    position: fixed; /* Fija la barra en la posición especificada */
+    top: 0; /* Alinea la barra en la parte superior */
+    left: 0; /* Alinea la barra en la parte izquierda */
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    z-index: 1000; /* Asegura que la barra esté por encima de otros contenidos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
 }
 
 .custom-titlebar-title {
-    /* Este bloque de estilos solo se aplicará si el div .custom-titlebar-title está presente en tu HTML.
-       Si lo tienes comentado, estas reglas no tendrán efecto. */
-    -webkit-app-region: no-drag;
+    -webkit-app-region: no-drag; /* Deshabilita el arrastre para el texto del título */
     flex-grow: 1; /* Permite que el título ocupe el espacio restante */
-    text-align: center; /* Centra el título en el espacio restante */
+    text-align: center; /* Centra el título */
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -33,60 +31,38 @@
 .app-controls {
     display: flex;
     -webkit-app-region: no-drag;
-    /* Con justify-content: flex-end en el padre, este contenedor ya estará a la derecha.
-       No necesitamos márgenes extra para empujarlo. */
+    /* La propiedad `justify-content: flex-end;` en `.custom-titlebar` es quien los mueve a la derecha.
+       No necesitamos `margin-left: auto;` aquí si el `.custom-titlebar-title` está comentado. */
 }
 
-/* Estilos base para los botones individuales dentro de .app-controls */
+/* --- Estilos específicos para los botones dentro de la barra de título --- */
+/* Estos estilos son más específicos (.app-controls button) y sobrescriben las propiedades
+   generales de 'button' definidas en `indexstyle.css` para adaptar los botones al tamaño de icono. */
 .app-controls button {
-    background: none;
-    border: none;
-    color: inherit; /* Hereda el color de texto de la barra de título */
-    font-size: 18px; /* Tamaño de los iconos/símbolos */
+    /* Reseteamos/ajustamos el padding, width, height, y font-size para que se vean como iconos */
+    padding: 0;
     width: 30px;
     height: 30px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 5px; /* Espacio a la izquierda de cada botón para separarlos entre sí */
-    margin-right: 0; /* Asegura que no haya margen derecho que los empuje */
-    padding: 0;
-    border-radius: 3px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 18px; /* Tamaño de los iconos (ej. '↻', '✖') */
+    margin-left: 5px; /* Espacio entre los botones de la barra de título */
+    background: none; /* Quitamos el fondo oscuro general de los botones */
+    color: #e0e0e0; /* Color inicial de los iconos (blanco grisáceo) */
+    border: none; /* Aseguramos que no tengan borde */
+    border-radius: 3px; /* Bordes ligeramente redondeados */
+    box-shadow: none; /* Aseguramos que no tengan la sombra general de los botones grandes */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transición más rápida para controles pequeños */
 }
 
-.app-controls button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-/* Estilos específicos para el botón de cerrar aplicación */
-.app-controls button.close-button:hover {
-    background-color: #e81123;
-    color: white;
-}
-
-/* Estilos para el botón de reinicio */
-.app-controls #restart-btn {
-    font-size: 1.2em;
-}
+/* Estilos de hover para el botón de reinicio en la barra de título */
 .app-controls #restart-btn:hover {
-    background-color: rgba(60, 179, 113, 0.5);
+    background-color: rgba(60, 179, 113, 0.5); /* Fondo verde suave al pasar el ratón */
+    color: white; /* Texto blanco */
+    box-shadow: none; /* No queremos la sombra del botón principal aquí */
+}
+
+/* Estilos de hover para el botón de cerrar en la barra de título */
+.app-controls button.close-button:hover {
+    background-color: #e81123; /* Fondo rojo distintivo para cerrar al pasar el ratón */
     color: white;
-}
-
-/* Asegura que el contenido principal de la página comience después de la barra de título */
-body {
-    /* ... Tus propiedades de font-family, background-image, etc. ... */
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    margin: 0;
-    padding-top: 32px; /* Espacio para la barra de título fija */
-}
-
-.main-container {
-    height: calc(100vh - 32px); /* La altura restante de la ventana */
-    /* ... Tus otras propiedades para .main-container ... */
+    box-shadow: none; /* No queremos la sombra del botón principal aquí */
 }
