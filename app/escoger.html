@@ -3,6 +3,7 @@
 <head>
 <title>Elige tu Aventura</title>
 <link rel="stylesheet" href="escoger.css" />
+<link rel="stylesheet" href="custom-titlebar.css" />
 <script>
 const { ipcRenderer } = require('electron');
 
@@ -44,9 +45,38 @@ const ahora = Date.now();
 const minutos = Math.floor((ahora - parseInt(inicio)) / 60000);
 return minutos + ' minutos';
 }
+document.addEventListener('DOMContentLoaded', () => {
+            const restartBtn = document.getElementById('restart-btn');
+            const quitBtn = document.getElementById('quit-btn');
+            const titlebar = document.querySelector('.custom-titlebar');
+
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    window.electronAPI.restartApp();
+                });
+            }
+            if (quitBtn) { // Listener para el botón de salida
+                quitBtn.addEventListener('click', () => {
+                    window.electronAPI.quitApp(); // ¡Esta función debería funcionar ahora!
+                });
+            }
+            if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+                titlebar.addEventListener('dblclick', () => {
+                    window.electronAPI.maximizeRestoreWindow();
+                });
+            }
+        });
+
 </script>
 </head>
 <body>
+    <div class="custom-titlebar">
+    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
+    <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+    </div>
+</div>
 <div class="main-container">
     <div class="left-panel">
         <h1>Elige tu Historia</h1>

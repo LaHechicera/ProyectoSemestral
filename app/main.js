@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, screen } = require('electron'); // Agregué 'screen' por si acaso, aunque no lo uses directamente ahora
 const path = require('path');
 const { handleUserRegistration, syncOfflineData } = require('./servidor/registro');
 const { isDatabaseConnected, updateUserData, appendDecisionOnline, updateUserStatus, getUserDataOnline, updateUserPreferencesOnline } = require('./db/database');
@@ -30,6 +30,41 @@ function createWindow() {
             const syncResult = await syncOfflineData();
         }
     });
+
+    // --- Manejadores de IPC para los botones de la barra de título ---
+    ipcMain.on('restart-app', () => {
+        console.log('Reiniciando aplicación...');
+        app.relaunch(); // Reinicia la aplicación
+        app.quit();     // Cierra la instancia actual
+    });
+
+    ipcMain.on('quit-app', () => {
+        console.log('Cerrando aplicación...');
+        app.quit(); // Cierra la aplicación
+    });
+
+    ipcMain.on('minimize-window', () => {
+        if (mainWindow) {
+            mainWindow.minimize();
+        }
+    });
+
+    ipcMain.on('maximize-restore-window', () => {
+        if (mainWindow) {
+            if (mainWindow.isMaximized()) {
+                mainWindow.unmaximize();
+            } else {
+                mainWindow.maximize();
+            }
+        }
+    });
+
+    ipcMain.on('close-window', () => {
+        if (mainWindow) {
+            mainWindow.close();
+        }
+    });
+    // --- Fin de Manejadores de IPC para los botones de la barra de título ---
 }
 
 app.whenReady().then(() => {
@@ -46,7 +81,7 @@ app.on('window-all-closed', () => {
     }
 });
 
-// Manejo de IPC Main
+// Manejo de IPC Main (resto de tu código existente, sin cambios)
 ipcMain.handle('registrar-usuario', async (event, userData) => {
     try {
         const result = await handleUserRegistration(userData, 'online');

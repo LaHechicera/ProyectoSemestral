@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumen de tu Historia</title>
     <link rel="stylesheet" href="./resumenFinal.css"/>
+    <link rel="stylesheet" href="custom-titlebar.css" />
+
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
     <div class="container">
@@ -25,7 +27,13 @@
             Nuevo Comienzo
         </button>
     </div>
-
+<div class="custom-titlebar">
+    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
+    <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+    </div>
+</div>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const userId = localStorage.getItem('usuarioId');
@@ -88,6 +96,29 @@
                 window.location.href = 'index.html'; 
             });
         });
+        document.addEventListener('DOMContentLoaded', () => {
+            const restartBtn = document.getElementById('restart-btn');
+            const quitBtn = document.getElementById('quit-btn');
+            const titlebar = document.querySelector('.custom-titlebar');
+
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    window.electronAPI.restartApp();
+                });
+            }
+            if (quitBtn) { // Listener para el botón de salida
+                quitBtn.addEventListener('click', () => {
+                    window.electronAPI.quitApp(); // ¡Esta función debería funcionar ahora!
+                });
+            }
+            if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+                titlebar.addEventListener('dblclick', () => {
+                    window.electronAPI.maximizeRestoreWindow();
+                });
+            }
+        });
+
     </script>
+    
 </body>
 </html>
