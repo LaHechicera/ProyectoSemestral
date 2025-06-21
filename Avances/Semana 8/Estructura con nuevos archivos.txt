@@ -1,0 +1,19 @@
+Implementación de nuevas funciones para almacenar a la base de datos las acciones faltantes, mas una nueva ventana con las estadísticas totales del jugador.
+
+APP./
+├── db/
+│   └── database.js
+│   └── offline.js 
+├── servidor/
+│   └── registro.js
+└── Carpetas de Estilos Css e imágenes/
+├── Agradecimientos.html //Pantalla final del juego
+├── db_local.js	
+├── escoger.html		
+├── HistoryLogic.js //Encargado de almacenar las decisiones		
+├── index.html		
+├── main.js
+├── preload.js   
+├── ResumenFinal //Pantalla para las estadísticas
+├── usuario.html 
+└── otros archivos

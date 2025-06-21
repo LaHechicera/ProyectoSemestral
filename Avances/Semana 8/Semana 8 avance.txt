@@ -1,0 +1,5 @@
+1. Nueva pantalla de Agradecimientos donde mostrara un mensaje de gracias y un botón de mostrar estadísticas.
+
+2. Se termina de completar las funcionalidades para la base de datos, agregando las funciones faltantes para almacenar todos los datos faltantes de las interacciones relevantes dentro la aplicación. Modificando los archivos main.js, preload.js, registro.js y archivos de la base de datos. Luego se crea el HistoryLogic.js para que se encargue de almacenar las decisiones tomadas durante la partida y guardar en una forma de Array en el archivo db_local.json(almacenamiento offline) todos los textos por botón.
+
+3. Nuevo archivo ResumenFinal.html(lógica) y ResumenFinal.css(Interfaz) para generar una ventana de estadísticas con los datos del nombre de usuario, historia seleccionada y las decisiones.
