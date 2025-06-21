@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'God of War';
     src: url('../Fuentes/GODOFWAR.TTF');
-    }
+}
 
 body {
     font-family: 'God of War', sans-serif;
@@ -9,63 +9,136 @@ body {
     overflow: hidden;
 }
 
-/* Hago que el contenedor se vaya hacia la parte inferior */
+/* Hago que el contenedor principal de la historia se vaya hacia la parte inferior y centre su contenido */
 .contenedor {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Empuja el cuadro de diálogo inferior hacia abajo */
-    height: 500px; /* Hace que ocupe el height del main.js se puede cambiar*/
-    gap: 0;
-  }
-  
-/*Aqui estilo de cuadro de dialogo cafe*/
-div h1{
+    justify-content: flex-end; /* Empuja el dialog-wrapper hacia abajo */
+    align-items: center; /* Centra horizontalmente el dialog-wrapper */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    padding-bottom: 20px; /* Un poco de espacio al final de la pantalla */
+    box-sizing: border-box; /* Incluye padding en el height */
+}
+
+/* Contenedor que envuelve los dos cuadros de diálogo para controlarlos juntos */
+.dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos internos (texto1 y contenedor2) */
+    width: 80%; /* O un ancho fijo, ajusta según necesidad. Esto es crucial para la alineación del h1. */
+    max-width: 800px; /* Establece un ancho máximo para que no se extienda demasiado */
+}
+
+/* Estilo del cuadro de diálogo superior (h1) */
+.texto1 {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible del dialog-wrapper */
+    text-align: left; /* Alinea el texto dentro del texto1 a la izquierda (aunque el h1 interno lo controlará) */
+    display: flex; /* Usar flexbox para alinear el h1 y su fondo */
+    justify-content: flex-start; /* Alinea el contenido (h1) a la izquierda */
+    margin-bottom: -15px; /* Ajusta el margen negativo para que se superponga ligeramente con el de abajo */
+}
+
+.texto1 h1 {
     font-family: 'God of War', sans-serif;
     background-image: url('../ImagenesFigmaElfo/cuadroDialogoArriba.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: left;
-    background-position-y: bottom; /*hace que la imagen se quede lo mas abajo posible*/
-    display: inline-block; /*Se ajusta al texto*/
-    padding: 50px;
-    text-align: left;
-    font-size: 25px; /*Tamaño texto*/
+    /* --- CAMBIOS CLAVE AQUÍ --- */
+    background-position: center; /* Centra la imagen de fondo */
+    display: flex; /* Convierte el h1 en un contenedor flex para centrar su propio texto */
+    justify-content: center; /* Centra horizontalmente el texto dentro del h1 */
+    align-items: center; /* Centra verticalmente el texto dentro del h1 */
+    padding: 0 50px; /* Elimina el padding-bottom específico, usa un padding uniforme o ajusta solo horizontal */
+    height: 100px; /* Dale una altura fija para que el flexbox tenga un espacio donde centrar el texto */
+    /* Ajusta esta altura (100px) para que coincida con la altura de tu imagen de fondo si es posible */
+    /* Puedes probar con un 'min-height' o un 'height' para que el texto tenga espacio para centrarse */
+    /* También puedes usar 'min-height' si el contenido puede variar y quieres que se expanda */
+    /* --- FIN CAMBIOS CLAVE --- */
+    font-size: 25px;
     color: #ffffff;
-    font-weight: normal; /*Dejamos la fuente sin negrita*/
-    padding-bottom: 18px; /*Hace que el texto se alinie con la imagen*/
+    font-weight: normal;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-/*Aqui estilo de cuadro de dialogo con botones*/
+/* Estilo del cuadro de diálogo inferior (con botones) */
 .contenedor2 {
     background-image: url('../ImagenesFigmaElfo/cuadroDialogoAbajo.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: top;
-    display: inline-block;
+    background-position: center top;
     padding: 20px;
     text-align: center;
     font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/*Hace que esten ams cerca*/
-div h1, .contenedor2 {
-    margin-bottom: 0;
+.contenedor2 .texto2 {
+    padding: 10px 0;
 }
 
+/* Estilo para los botones */
+.botones {
+    display: flex;
+    gap: 15px;
+    margin-top: -20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
 
-/*Aqui estilo botones*/
 div button {
-  background-color: #252525;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; 
+    background-color: #252525;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'God of War', sans-serif;
+    font-size: 18px;
 }
 
-button:hover{
+button:hover {
     background-color: rgb(63, 0, 0);
     color: #ffffff;
     box-shadow: 0 0 25px #fec1958c;
-  }
+}
+
+/* Otros estilos para la barra de título si los tienes */
+.custom-titlebar {
+    -webkit-app-region: drag;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.app-controls button {
+    -webkit-app-region: no-drag;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.app-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-controls .close-button:hover {
+    background-color: #e81123;
+}

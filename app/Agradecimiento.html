@@ -12,7 +12,36 @@
     width: 100vw;
   }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const restartBtn = document.getElementById('restart-btn');
+            const quitBtn = document.getElementById('quit-btn');
+            const titlebar = document.querySelector('.custom-titlebar');
+
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    window.electronAPI.restartApp();
+                });
+            }
+            if (quitBtn) { // Listener para el botón de salida
+                quitBtn.addEventListener('click', () => {
+                    window.electronAPI.quitApp(); // ¡Esta función debería funcionar ahora!
+                });
+            }
+            if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+                titlebar.addEventListener('dblclick', () => {
+                    window.electronAPI.maximizeRestoreWindow();
+                });
+            }
+        });
+    </script>
     <body>
+        <div class="custom-titlebar">
+        <div class="app-controls"> 
+        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+    </div>
+    </div>
         <h1>Gracias por jugar :3</h1>
         <div class="botones">
         <button onclick="window.location.href='resumenFinal.html'">Ver tus elecciones</button>
