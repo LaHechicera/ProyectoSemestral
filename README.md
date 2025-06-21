@@ -1,6 +1,6 @@
 # 💻Proyecto Semestral🕹️
 
-Crearemos una aplicación estilo juego gráfico de deciciones, el cual estara dividido en "Historias" las que decidiran el destino del usuario que juegue, al final de su recorrido se pretende que aparezca una pantalla con sus estadisticas y las deciciones tomadas durante su aventura. 
+Creamos una aplicación estilo juego gráfico de deciciones, el cual está dividido en "Historias" las que decidirán el destino del usuario que juegue, al final de su recorrido aparecerá una pantalla con sus estadísticas y las deciciones tomadas durante su aventura.
 
 ---
 
@@ -29,7 +29,7 @@ Para esto utilizaremos el framework de Electron para poder trabajar con:
 - JavaScript (Backend)
 - MySQL Admin (Base de datos)
 - Github (Control de versiones)
-
+- API giphy (Animaciones en el inicio)
 ---
 
 ## 🚀Instalación🪄
@@ -78,7 +78,7 @@ git clone https://github.com/LaHechicera/ProyectoSemestral.git
 }
 
 ```
-7. Instalar librerias en terminal de VSC: "npm install express", "npm install mysql", "npm install cors", "npm install promise", "npm install mysql2"
+7. Instalar librerias en terminal de VSC: "npm install express", "npm install cors", "npm install promise", "npm install mysql2", npm install node-fetch@2
 8. Luego en la misma consola luego de realizar todos los pasos anteriores, para iniciar la app se debe ingresar "npm start"
 
 Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito.
@@ -96,3 +96,4 @@ Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito
 |📂 Semana 5 | Desarrollo proyecto (BD) | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%205)|
 |📂 Semana 6 | Desarrollo y planificación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%206)|
 |📂 Semana 7 | Creación funciones para BD | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%207)|
+|📂 Semana 8 | Finalizacion con BD y API | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%208)|
