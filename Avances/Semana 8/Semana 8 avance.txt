@@ -7,3 +7,9 @@
 4. Se agregaron nuevos botones de funcionalidades de reinicio y salida a todas las pantallas de la aplicación.
 
 5. Se mejoro el frontend, se elimino el marco de la ventana, agregaron nuevos colores y se reposicionaron párrafos.
+
+6. Se agregaron animaciones a las pantallas de inicio, para la ventana de iniciar la partida, y para la selección de personajes.
+
+7. Se implementa un hook para automatizar el proceso de Push luego del commit agregando un archivo post-commit en .git:
+#!/bin/sh
+git push origin Endy / Srtix
