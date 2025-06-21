@@ -53,7 +53,7 @@ body h1{
 nav {
     /* Es crucial que el nav tenga un ancho definido para poder centrar el botón dentro de él. */
     /* Lo igualamos al max-width del .left-block para que se alinee. */
-    width: 600px; /* Asegura que el nav no se extienda más allá del bloque izquierdo */
+    width: 400px; /* Asegura que el nav no se extienda más allá del bloque izquierdo */
     margin: 30px auto 0 0px; /* Margen superior y centrado, manteniendo el padding izquierdo del .container */
                                /* El 20px es el padding-left del .container, que necesitas para alinear el nav */
     padding: 0; /* Asegúrate de que no haya padding interno en el nav que afecte el centrado */
@@ -90,7 +90,7 @@ button:hover{
     box-shadow: none;
 }
 
-/* Otros estilos para la barra de título si los tienes */
+/* Estilos para la barra de título */
 .custom-titlebar {
     -webkit-app-region: drag;
     height: 30px; /* Asegúrate de que esta altura sea consistente con el padding-top del body */
@@ -101,7 +101,7 @@ button:hover{
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 98%;
     z-index: 100;
 }
 
