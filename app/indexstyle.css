@@ -16,6 +16,10 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
+
+  /* --- CAMBIO CLAVE AQUÍ --- */
+  padding-top: 30px; /* Añade un padding en la parte superior igual a la altura de tu barra de título */
+  /* Si la altura de tu barra de título cambia, actualiza este valor también */
 }
 body h1{
   filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0));
@@ -37,7 +41,6 @@ body h1{
   padding-right: 30px;
 }
 
-/* *** MODIFICACIÓN IMPORTANTE PARA .right-block *** */
 .right-block {
   flex: 1;
   border-radius: 10px;
@@ -49,10 +52,13 @@ body h1{
 }
 
 nav {
-    width: 30px 0 30px 50px; /* Ancho para nav, similar al max-width de left-block, ajusta si es necesario */
+    /* Tu valor de width '30px 0 30px 50px' no es válido para width. Debe ser un solo valor. */
+    /* Lo interpretaré como un padding para mantener la indentación que quieres. */
+    /* width: 30px 0 30px 50px; -- Esto es incorrecto, lo removeremos */
     margin: 30px auto; /* Centra el nav en la página */
     text-align: left; /* Alinea el contenido (el botón) a la izquierda dentro del nav */
     padding-left: 20px; /* Añade un padding si necesitas más espacio desde el borde izquierdo del nav */
+    max-width: 600px; /* Ajusta este valor si quieres que el botón se alinee con el texto del left-block */
 }
 
 
@@ -82,4 +88,37 @@ button:hover{
     border: none;
     border-radius: 0;
     box-shadow: none;
+}
+
+/* Otros estilos para la barra de título si los tienes */
+.custom-titlebar {
+    -webkit-app-region: drag;
+    height: 30px; /* Asegúrate de que esta altura sea consistente con el padding-top del body */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.app-controls button {
+    -webkit-app-region: no-drag;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.app-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-controls .close-button:hover {
+    background-color: #e81123;
 }

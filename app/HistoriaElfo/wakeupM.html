@@ -5,61 +5,73 @@
     <style>
         body{
             background: url('../ImagenesFigmaElfo/fondoAestetikoBosque.jpg');
-            background-size: cover; /* Hace que la imagen cubra todo el fondo */
-    background-position: center;
-    background-repeat: no-repeat; /*hace que no se repita el fondo*/
-    height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
-    width: 100vw;
-  }
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const restartBtn = document.getElementById('restart-btn');
             const quitBtn = document.getElementById('quit-btn');
             const titlebar = document.querySelector('.custom-titlebar');
+            const decisionButtons = document.querySelectorAll('.decision-button'); // Añadir esto para los botones de decisión
 
             if (restartBtn) {
                 restartBtn.addEventListener('click', () => {
                     window.electronAPI.restartApp();
                 });
             }
-            if (quitBtn) { // Listener para el botón de salida
+            if (quitBtn) {
                 quitBtn.addEventListener('click', () => {
-                    window.electronAPI.quitApp(); // ¡Esta función debería funcionar ahora!
+                    window.electronAPI.quitApp();
                 });
             }
-            if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
+            if (titlebar) {
                 titlebar.addEventListener('dblclick', () => {
                     window.electronAPI.maximizeRestoreWindow();
                 });
             }
+
+            // Listener para los botones de decisión
+            decisionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetUrl = button.getAttribute('data-target-url');
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
+            });
         });
     </script>
 
     <body>
         <div class="custom-titlebar">
-    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
-    <div class="app-controls"> 
-        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
-        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
-    </div>
-</div>
-    <div class="contenedor">
-        <div class="texto1">
-            <h1>Despiertas</h1>
-        </div>
-        <div class="contenedor2">
-            <div class="texto2">
-                <p>Estas en el bosque, no sabes como llegaste ahi, ni donde estas exactamente, solo 
-            recuerdas que los sabios del pueblo descubrieron que eras una asesina y fuiste 
-            expulsada del reino, donde iras ahora...</p>
-            </div>
-            <div class="botones">
-                <button class="decision-button" data-target-url='Pueblo/Pueblo1.html'>Pueblo</button>
-                <button class="decision-button" data-target-url='./Bosque/Bosque1.html'>Bosque</button>
+            <div class="app-controls">
+                <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+                <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
             </div>
         </div>
-    </div>
-    <script src="../HistoryLogic.js"></script>
+        <div class="contenedor">
+            <div class="dialog-wrapper">
+                <div class="texto1">
+                    <h1>Despiertas</h1>
+                </div>
+                <div class="contenedor2">
+                    <div class="texto2">
+                        <p>Estas en el bosque, no sabes como llegaste ahi, ni donde estas exactamente, solo
+                        recuerdas que los sabios del pueblo descubrieron que eras una asesina y fuiste
+                        expulsada del reino, donde iras ahora...</p>
+                    </div>
+                    <div class="botones">
+                        <button class="decision-button" data-target-url='Pueblo/Pueblo1.html'>Pueblo</button>
+                        <button class="decision-button" data-target-url='./Bosque/Bosque1.html'>Bosque</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../HistoryLogic.js"></script>
     </body>
 </html>

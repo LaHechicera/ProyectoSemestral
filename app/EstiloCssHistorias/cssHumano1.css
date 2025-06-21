@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'God of War';
     src: url('../Fuentes/GODOFWAR.TTF');
-    }
+}
 
 body {
     font-family: 'God of War', sans-serif;
@@ -9,63 +9,131 @@ body {
     overflow: hidden;
 }
 
-/* Hago que el contenedor se vaya hacia la parte inferior */
+/* Hago que el contenedor principal de la historia se vaya hacia la parte inferior y centre su contenido */
 .contenedor {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Empuja el cuadro de diálogo inferior hacia abajo */
-    height: 500px; /* Hace que ocupe el height del main.js se puede cambiar*/
-    gap: 0;
-  }
-  
-/*Aqui estilo de cuadro de dialogo cafe*/
-div h1{
-    font-family: 'God of War', sans-serif;
-    background-image: url('../ImagenesFigmaElfo/cuadroDialogoArriba.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left;
-    background-position-y: bottom; /*hace que la imagen se quede lo mas abajo posible*/
-    display: inline-block; /*Se ajusta al texto*/
-    padding: 50px;
-    text-align: left;
-    font-size: 25px; /*Tamaño texto*/
-    color: #ffffff;
-    font-weight: normal; /*Dejamos la fuente sin negrita*/
-    padding-bottom: 9px; /*Hace que el texto se alinie con la imagen*/
+    justify-content: flex-end; /* Empuja el dialog-wrapper hacia abajo */
+    align-items: center; /* Centra horizontalmente el dialog-wrapper */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    padding-bottom: 20px; /* Un poco de espacio al final de la pantalla */
+    box-sizing: border-box; /* Incluye padding en el height */
 }
 
-/*Aqui estilo de cuadro de dialogo con botones*/
+/* Contenedor que envuelve los dos cuadros de diálogo para controlarlos juntos */
+.dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos internos (texto1 y contenedor2) */
+    width: 80%; /* O un ancho fijo, ajusta según necesidad. Esto es crucial para la alineación del h1. */
+    max-width: 800px; /* Establece un ancho máximo para que no se extienda demasiado */
+}
+
+/* Estilo del cuadro de diálogo superior (h1) */
+.texto1 {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible del dialog-wrapper */
+    text-align: left; /* Alinea el texto dentro del texto1 a la izquierda */
+    display: flex; /* Usar flexbox para alinear el h1 y su fondo */
+    justify-content: flex-start; /* Alinea el contenido (h1) a la izquierda */
+    margin-bottom: -15px; /* Ajusta el margen negativo para que se superponga ligeramente con el de abajo */
+}
+
+.texto1 h1 {
+    font-family: 'God of War', sans-serif;
+    background-image: url('../ImagenesFigmaElfo/cuadroDialogoArriba.png');
+    background-size: contain; /* Ajusta la imagen dentro de su contenedor */
+    background-repeat: no-repeat;
+    background-position: left bottom; /* La imagen de fondo a la izquierda y abajo */
+    padding: 50px;
+    padding-bottom: 9px;
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: normal;
+    display: inline-block; /* Se ajusta al contenido */
+    max-width: 100%; /* Asegura que el h1 no desborde su padre */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+/* Estilo del cuadro de diálogo inferior (con botones) */
 .contenedor2 {
     background-image: url('../ImagenesFigmaElfo/cuadroDialogoAbajo.png');
-    background-size: cover;
+    background-size: contain; /* Cambiado a 'contain' para que la imagen se vea completa */
     background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: top;
-    display: inline-block;
+    background-position: center top; /* La imagen de fondo centrada y arriba */
     padding: 20px;
     text-align: center;
     font-size: 18px;
+    width: 100%; /* Ocupa todo el ancho disponible del dialog-wrapper */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+    display: flex; /* Para controlar el texto2 y los botones */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/*Hace que esten ams cerca*/
-div h1, .contenedor2 {
-    margin-bottom: 0;
+.contenedor2 .texto2 {
+    padding: 10px 0; /* Ajusta el padding interno si es necesario */
 }
 
+/* Estilo para los botones */
+.botones {
+    display: flex;
+    gap: 15px; /* Espacio entre los botones */
+    /* *** CAMBIO CLAVE AQUÍ *** */
+    margin-top: -20px; /* Mueve los botones 20px hacia arriba, superponiéndose con el contenido de .contenedor2 */
+    /* Ajusta este valor (-20px) según qué tan superpuestos quieres que estén */
+    flex-wrap: wrap; /* Permite que los botones se envuelvan si hay muchos */
+    justify-content: center;
+    position: relative; /* Asegura que el z-index funcione si es necesario, aunque con margin-top no suele serlo */
+    z-index: 1; /* Asegura que los botones estén por encima de la imagen de fondo si hay conflictos */
+}
 
-/*Aqui estilo botones*/
 div button {
-  background-color: #252525;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; 
+    background-color: #252525;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'God of War', sans-serif; /* Aplica la fuente a los botones también */
+    font-size: 18px;
 }
 
-button:hover{
+button:hover {
     background-color: rgb(63, 0, 0);
     color: #ffffff;
     box-shadow: 0 0 25px #fec1958c;
-  }
+}
+
+/* Otros estilos para la barra de título si los tienes */
+.custom-titlebar {
+    -webkit-app-region: drag;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.app-controls button {
+    -webkit-app-region: no-drag;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.app-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-controls .close-button:hover {
+    background-color: #e81123;
+}

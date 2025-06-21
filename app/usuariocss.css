@@ -55,3 +55,37 @@ input {
     border-radius: 15px; /* Bordes redondeados */
     font-size: 14px; /* Hace que el texto dentro del input sea más grande */
 }
+
+
+/* Otros estilos para la barra de título si los tienes */
+.custom-titlebar {
+    -webkit-app-region: drag;
+    height: 30px; /* Asegúrate de que esta altura sea consistente con el padding-top del body */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.app-controls button {
+    -webkit-app-region: no-drag;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.app-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-controls .close-button:hover {
+    background-color: #e81123;
+}

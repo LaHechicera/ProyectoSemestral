@@ -6,17 +6,19 @@
         body{
             background: url('../../ImagenesFigmaElfo/peleaGuerrero.jpg');
             background-size: cover; /* Hace que la imagen cubra todo el fondo */
-    background-position: center;
-    background-repeat: no-repeat; /*hace que no se repita el fondo*/
-    height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
-    width: 100vw;
-  }
+            background-position: center;
+            background-repeat: no-repeat; /*hace que no se repita el fondo*/
+            height: 100vh; /* Hace que el fondo ocupe toda la pantalla */
+            width: 100vw;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const restartBtn = document.getElementById('restart-btn');
             const quitBtn = document.getElementById('quit-btn');
             const titlebar = document.querySelector('.custom-titlebar');
+            // Asegúrate de que los botones de decisión también funcionen si los agregas más tarde
+            const decisionButtons = document.querySelectorAll('.decision-button');
 
             if (restartBtn) {
                 restartBtn.addEventListener('click', () => {
@@ -33,30 +35,42 @@
                     window.electronAPI.maximizeRestoreWindow();
                 });
             }
+
+            // Script para el botón de continuar, similar a los decision-buttons
+            decisionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetUrl = button.getAttribute('data-target-url');
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
+            });
         });
     </script>
     <body>
         <div class="custom-titlebar">
-    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
-    <div class="app-controls"> 
-        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
-        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
-    </div>
+            <div class="app-controls">
+                <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+                <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+            </div>
+        </div> 
         <div class="contenedor">
-            <div class="texto1">
-        <h1>Bosque</h1>
-    </div>
-    <div class="contenedor2">
-        <div class="texto2">
-        <p>En el bolso del guerrero encuentras lo que parece 
-            ser un orbe de energía no muy útil y una nota 
-            que dice “Encuentra la Sierpe del Dragón e ingresa 
-            a la cueva Iz’Tik”... ya sabes hacia donde dirigirte...</p>
+            <div class="dialog-wrapper">
+                <div class="texto1">
+                    <h1>Bosque</h1>
+                </div>
+                <div class="contenedor2">
+                    <div class="texto2">
+                        <p>En el bolso del guerrero encuentras lo que parece
+                            ser un orbe de energía no muy útil y una nota
+                            que dice “Encuentra la Sierpe del Dragón e ingresa
+                            a la cueva Iz’Tik”... ya sabes hacia donde dirigirte...</p>
+                    </div>
+                    <div class="botones">
+                        <button onclick="window.location.href='Bosque2_2.html'">Continuar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="botones">
-        <button onclick="window.location.href='Bosque2_2.html'">Continuar</button>
-    </div>
-</div>
-</div>
-</body>
+    </body>
 </html>
