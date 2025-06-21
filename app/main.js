@@ -3,7 +3,7 @@ const path = require('path');
 const { handleUserRegistration, syncOfflineData } = require('./servidor/registro');
 const { isDatabaseConnected, updateUserData, appendDecisionOnline, updateUserStatus, getUserDataOnline, updateUserPreferencesOnline } = require('./db/database');
 const { saveUserOffline, readOfflineUsers, appendDecisionOffline, getUserDataOffline, updateUserPreferencesOffline } = require('./db/offline');
-
+const fetch = require('node-fetch'); //API
 let mainWindow;
 
 function createWindow() {
@@ -252,5 +252,29 @@ ipcMain.handle('update-user-preferences', async (event, userId, selectStory, gen
         return result;
     } catch (error) {
         return { success: false, message: 'Error general al actualizar preferencias: ' + error.message };
+    }
+});
+// Nuevo manejador IPC para la API de Giphy
+ipcMain.handle('fetch-giphy-image', async (event, searchTerm) => {
+    // Reemplaza 'TU_CLAVE_API_GIPHY' con la clave que obtuviste
+    const GIPHY_API_KEY = 'TU_CLAVE_API_GIPHY';
+    const GIPHY_API_URL = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${encodeURIComponent(searchTerm)}&limit=1&offset=0&rating=g&lang=en`;
+
+    try {
+        const response = await fetch(GIPHY_API_URL);
+        if (!response.ok) {
+            throw new Error(`Error HTTP! estado: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (data.data && data.data.length > 0) {
+            // Retorna la URL de la imagen (por ejemplo, el URL fijo para tamaño original o 'downsized_medium')
+            return { success: true, imageUrl: data.data[0].images.original.url };
+        } else {
+            return { success: false, message: 'No se encontraron GIFs para el término de búsqueda.' };
+        }
+    } catch (error) {
+        console.error('Error al obtener GIF de Giphy:', error);
+        return { success: false, message: `Error al obtener GIF: ${error.message}` };
     }
 });

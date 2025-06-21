@@ -5,81 +5,125 @@
 <link rel="stylesheet" href="escoger.css" />
 <link rel="stylesheet" href="custom-titlebar.css" />
 <script>
-const { ipcRenderer } = require('electron');
+// Elimina: const { ipcRenderer } = require('electron'); // Esto no funciona con contextIsolation
 
 // Guarda el tiempo de inicio al cargar esta página
 window.onload = () => {
-if (!localStorage.getItem('inicioJuego')) {
-localStorage.setItem('inicioJuego', Date.now());
-}
+    if (!localStorage.getItem('inicioJuego')) {
+        localStorage.setItem('inicioJuego', Date.now());
+    }
+    // Cargar los GIFs al cargar la página
+    loadGifsBasedOnConnection();
 };
 
-function selectStory(type) {
-// Mostrar opciones según tipo
-if (type === 'humano') {
-document.getElementById('gender-section-humano').style.display = 'block';
-document.getElementById('gender-section-elfo').style.display = 'none';
-} else if (type === 'elfo') {
-document.getElementById('gender-section-humano').style.display = 'none';
-document.getElementById('gender-section-elfo').style.display = 'block';
+// URLs de los GIFs
+const GIPHY_HUMANO_URL = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJpajhyMWFpYjNnNGUxZW8xcnpqYzVhcGozenp5aG1pbmJ1cDJ5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9MH3zhwJgI5KrgbSj5/giphy.gif";
+const OFFLINE_HUMANO_URL = "./ImagenesFigmaElfo/Offline/humano_offline.png"; 
+
+const GIPHY_ELFO_URL = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG93ZnczeDYxbG1zaDN3bWQ5ZTBwdWY0dmVta3R2aDh1N3AzeDRmYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3j4sGFHhE0NK3l2dIC/giphy.gif";
+const OFFLINE_ELFO_URL = "./ImagenesFigmaElfo/Offline/elfo_offline.png";
+
+
+function loadGifsBasedOnConnection() {
+    const humanoGif = document.getElementById('humano-gif-img');
+    const elfoGif = document.getElementById('elfo-gif-img');
+
+    // Cargar la imagen online si hay conexión, de lo contrario la offline
+    if (navigator.onLine) {
+        humanoGif.src = GIPHY_HUMANO_URL;
+        elfoGif.src = GIPHY_ELFO_URL;
+    } else {
+        humanoGif.src = OFFLINE_HUMANO_URL;
+        elfoGif.src = OFFLINE_ELFO_URL;
+    }
+
+    // Configurar los onerror handlers para cada imagen
+    humanoGif.onerror = () => {
+        console.warn('GIF humano de Giphy falló al cargar, cargando versión local.');
+        humanoGif.src = OFFLINE_HUMANO_URL;
+    };
+    elfoGif.onerror = () => {
+        console.warn('GIF elfo de Giphy falló al cargar, cargando versión local.');
+        elfoGif.src = OFFLINE_ELFO_URL;
+    };
 }
 
-// Obtener datos del usuario
-const usuarioId = localStorage.getItem('usuarioId') || 'desconocido';
-const decisiones = 'Seleccionó raza: ' + type;
-const tiempoJuego = calcularTiempo();
-const opciones = type;
+function selectStory(type) {
+    // Referencias a los contenedores de género y las imágenes
+    const genderSectionHumano = document.getElementById('gender-section-humano');
+    const genderSectionElfo = document.getElementById('gender-section-elfo');
+    const imageHumanoGifContainer = document.getElementById('image-humano-gif');
+    const imageElfoGifContainer = document.getElementById('image-elfo-gif');
 
-// Enviar los datos al backend
-ipcRenderer.send('guardar-decision', {
-usuarioId,
-decisiones,
-tiempoJuego,
-opciones
-});
+    // Mostrar/ocultar secciones y GIFs según el tipo de historia seleccionado
+    if (type === 'humano') {
+        genderSectionHumano.style.display = 'block';
+        genderSectionElfo.style.display = 'none';
+        imageHumanoGifContainer.style.display = 'block'; // Muestra el contenedor del GIF del humano
+        imageElfoGifContainer.style.display = 'none';   // Oculta el contenedor del GIF del elfo
+    } else if (type === 'elfo') {
+        genderSectionHumano.style.display = 'none';
+        genderSectionElfo.style.display = 'block';
+        imageHumanoGifContainer.style.display = 'none';   // Oculta el contenedor del GIF del humano
+        imageElfoGifContainer.style.display = 'block';   // Muestra el contenedor del GIF del elfo
+    }
+
+    // Almacena la raza seleccionada, el género se manejará al hacer clic en el botón de género
+    localStorage.setItem('selectedStoryType', type);
 }
 
 function calcularTiempo() {
-const inicio = localStorage.getItem('inicioJuego');
-const ahora = Date.now();
-const minutos = Math.floor((ahora - parseInt(inicio)) / 60000);
-return minutos + ' minutos';
+    const inicio = localStorage.getItem('inicioJuego');
+    const ahora = Date.now();
+    const minutos = Math.floor((ahora - parseInt(inicio)) / 60000);
+    return minutos + ' minutos';
 }
-document.addEventListener('DOMContentLoaded', () => {
-            const restartBtn = document.getElementById('restart-btn');
-            const quitBtn = document.getElementById('quit-btn');
-            const titlebar = document.querySelector('.custom-titlebar');
 
-            if (restartBtn) {
-                restartBtn.addEventListener('click', () => {
-                    window.electronAPI.restartApp();
-                });
-            }
-            if (quitBtn) { // Listener para el botón de salida
-                quitBtn.addEventListener('click', () => {
-                    window.electronAPI.quitApp(); // ¡Esta función debería funcionar ahora!
-                });
-            }
-            if (titlebar) { // El doble clic seguirá maximizando/restaurando la ventana
-                titlebar.addEventListener('dblclick', () => {
-                    window.electronAPI.maximizeRestoreWindow();
-                });
-            }
+//conexión para actualizar los GIFs si la conexión cambia en esta página
+window.addEventListener('online', loadGifsBasedOnConnection);
+window.addEventListener('offline', loadGifsBasedOnConnection);
+
+// Manejadores de los botones de la barra de título (existentes)
+document.addEventListener('DOMContentLoaded', () => {
+    const restartBtn = document.getElementById('restart-btn');
+    const quitBtn = document.getElementById('quit-btn');
+    const titlebar = document.querySelector('.custom-titlebar');
+
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            window.electronAPI.restartApp();
         });
+    }
+    if (quitBtn) {
+        quitBtn.addEventListener('click', () => {
+            window.electronAPI.quitApp();
+        });
+    }
+    if (titlebar) {
+        titlebar.addEventListener('dblclick', () => {
+            window.electronAPI.maximizeRestoreWindow();
+        });
+    }
+});
 
 </script>
 </head>
 <body>
     <div class="custom-titlebar">
-    <!--<div class="custom-titlebar-title">Elige tu Aventura</div> Puedes personalizar este título por página -->
-    <div class="app-controls"> 
-        <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
-        <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+        <div class="app-controls"> 
+            <button id="restart-btn" title="Reiniciar Aplicación">↻</button>
+            <button id="quit-btn" class="close-button" title="Salir de la Aplicación">✖</button>
+        </div>
     </div>
-</div>
 <div class="main-container">
     <div class="left-panel">
         <h1>Elige tu Historia</h1>
+        <div id="image-humano-gif" class="story-image-container" style="display: none;">
+            <img id="humano-gif-img" src="" alt="Humano GIF" class="story-gif">
+        </div>
+        <div id="image-elfo-gif" class="story-image-container" style="display: none;">
+            <img id="elfo-gif-img" src="" alt="Elfo GIF" class="story-gif">
+        </div>
     </div>
 
     <div class="right-panel">
@@ -107,48 +151,34 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <script>
+async function savePreferencesAndRedirect(selectStoryType, genero, targetUrl) {
+    const userId = localStorage.getItem('usuarioId');
 
-    function selectStory(type) {
-        // Mostrar opciones según tipo
-        if (type === 'humano') {
-            document.getElementById('gender-section-humano').style.display = 'block';
-            document.getElementById('gender-section-elfo').style.display = 'none';
-        } else if (type === 'elfo') {
-            document.getElementById('gender-section-humano').style.display = 'none';
-            document.getElementById('gender-section-elfo').style.display = 'block';
-        }
-        // Almacena la raza seleccionada, el género se manejará al hacer clic en el botón de género
-        localStorage.setItem('selectedStoryType', type);
+    if (!userId) {
+        alert('Error: ID de usuario no encontrado. Por favor, inicia sesión de nuevo.');
+        window.location.href = '../../usuario.html';
+        return;
     }
 
-    async function savePreferencesAndRedirect(selectStoryType, genero, targetUrl) {
-        const userId = localStorage.getItem('usuarioId'); // Obtener el ID del usuario del localStorage
+    if (window.api && typeof window.api.updateUserPreferences === 'function') {
+        try {
+            const result = await window.api.updateUserPreferences(userId, selectStoryType, genero);
 
-        if (!userId) {
-            alert('Error: ID de usuario no encontrado. Por favor, inicia sesión de nuevo.');
-            window.location.href = '../../usuario.html'; // Redirige a la página de login
-            return;
-        }
-
-        if (window.api && typeof window.api.updateUserPreferences === 'function') {
-            try {
-                const result = await window.api.updateUserPreferences(userId, selectStoryType, genero);
-
-                if (result.success) {
-                    window.location.href = targetUrl;
-                } else {
-                    alert('Error al guardar tus preferencias: ' + result.message);
-                    window.location.href = targetUrl; // Redirige de todas formas
-                }
-            } catch (error) {
-                alert('Ocurrió un error al comunicarse con la aplicación: ' + error.message);
-                window.location.href = targetUrl; // Redirige de todas formas
+            if (result.success) {
+                window.location.href = targetUrl;
+            } else {
+                alert('Error al guardar tus preferencias: ' + result.message);
+                window.location.href = targetUrl;
             }
-        } else {
-            alert('Error: Funcionalidad de guardar preferencias no disponible. Asegúrate de que Electron API esté cargada.');
-            window.location.href = targetUrl; // Redirige directamente
+        } catch (error) {
+            alert('Ocurrió un error al comunicarse con la aplicación: ' + error.message);
+            window.location.href = targetUrl;
         }
+    } else {
+        alert('Error: Funcionalidad de guardar preferencias no disponible. Asegúrate de que Electron API esté cargada.');
+        window.location.href = targetUrl;
     }
+}
 </script>
 </body>
 </html>
