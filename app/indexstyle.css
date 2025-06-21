@@ -17,9 +17,7 @@ body {
   height: 100vh;
   width: 100vw;
 
-  /* --- CAMBIO CLAVE AQUÍ --- */
   padding-top: 30px; /* Añade un padding en la parte superior igual a la altura de tu barra de título */
-  /* Si la altura de tu barra de título cambia, actualiza este valor también */
 }
 body h1{
   filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0));
@@ -37,7 +35,7 @@ body h1{
 
 .left-block {
   flex: 1;
-  max-width: 600px;
+  max-width: 600px; /* Este es el ancho de referencia para el bloque izquierdo */
   padding-right: 30px;
 }
 
@@ -51,16 +49,18 @@ body h1{
   padding: 10px;
 }
 
+/* --- CAMBIOS CLAVE AQUÍ PARA EL BOTÓN EN EL LADO IZQUIERDO CENTRADO --- */
 nav {
-    /* Tu valor de width '30px 0 30px 50px' no es válido para width. Debe ser un solo valor. */
-    /* Lo interpretaré como un padding para mantener la indentación que quieres. */
-    /* width: 30px 0 30px 50px; -- Esto es incorrecto, lo removeremos */
-    margin: 30px auto; /* Centra el nav en la página */
-    text-align: left; /* Alinea el contenido (el botón) a la izquierda dentro del nav */
-    padding-left: 20px; /* Añade un padding si necesitas más espacio desde el borde izquierdo del nav */
-    max-width: 600px; /* Ajusta este valor si quieres que el botón se alinee con el texto del left-block */
+    /* Es crucial que el nav tenga un ancho definido para poder centrar el botón dentro de él. */
+    /* Lo igualamos al max-width del .left-block para que se alinee. */
+    width: 600px; /* Asegura que el nav no se extienda más allá del bloque izquierdo */
+    margin: 30px auto 0 0px; /* Margen superior y centrado, manteniendo el padding izquierdo del .container */
+                               /* El 20px es el padding-left del .container, que necesitas para alinear el nav */
+    padding: 0; /* Asegúrate de que no haya padding interno en el nav que afecte el centrado */
+    display: flex; /* Usamos flexbox para centrar el contenido (el botón) */
+    justify-content: center; /* Centra horizontalmente el botón dentro del nav */
+    align-items: center; /* (Opcional) Centra verticalmente si el nav tuviera altura definida */
 }
-
 
 nav button{
   background-color: #252525;
