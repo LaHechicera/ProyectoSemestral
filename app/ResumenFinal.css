@@ -4,112 +4,135 @@
 }
 
 body {
-    font-family: 'God of War', sans-serif;
-    background: url('ImagenesFigmaElfo/imagenFinalAgradecimiento.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #fff;
+  font-family: 'God of War', sans-serif;
+  background: url('ImagenesFigmaElfo/imagenFinalAgradecimiento.jpg');
+  background-size: cover; /* La imagen cubrirá el área disponible sin deformarse */
+  background-position: center top; /* Asegura que la parte superior de la imagen esté siempre visible */
+  background-repeat: no-repeat; /* No queremos que se repita la misma imagen */
+  background-attachment: scroll; /* La imagen se moverá con el scroll del contenido */
+  min-height: 100vh; /* Asegura que el cuerpo siempre ocupe al menos la altura de la ventana */
+  display: flex;
+  justify-content: flex-start; /* Alinea el contenido al inicio para el scroll */
+  align-items: center; /* Alineación horizontal del contenedor */
+  flex-direction: column;
+  color: #fff;
+  padding-top: 30px; /* Espacio para tu custom-titlebar */
+  position: relative; /* Necesario para que el pseudo-elemento funcione correctamente */
 }
+
+/* Pseudo-elemento para el fondo de continuación */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ocupará toda la altura del body */
+  background: url('ImagenesFigmaElfo/imagenFinalAgradecimiento.jpg'); /* La misma imagen */
+  background-size: cover;
+  background-position: center top;
+  background-repeat: repeat-y; /* Permite que la imagen se repita verticalmente si el contenido excede la altura de la imagen */
+  z-index: -1; /* Envía el pseudo-elemento detrás del contenido */
+  opacity: 0.8; /* Ajusta la opacidad si deseas que la imagen sea más sutil al repetirse */
+}
+
+
 .container {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(2px);
-    border-radius: 1.5rem;
-    padding: 2.5rem;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1; /* Asegura que el contenedor esté por encima del fondo */
+  margin-top: 2rem; /* Añade un margen superior para separar del título si es necesario */
+  margin-bottom: 2rem; /* Añade margen inferior para que el botón no quede pegado al final */
 }
+
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: #fbd38d;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #fbd38d;
 }
 h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    color: #c3dafe;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #c3dafe;
 }
 p.info-text {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #d1d5db;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #d1d5db;
 }
 ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
 }
 li {
-    background-color: rgba(255, 255, 255, 0.15);
-    margin-bottom: 0.75rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.75rem;
-    font-size: 1.1rem;
-    text-align: left;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  text-align: left;
 }
 button {
-    background-color: #004206;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.75rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 2rem;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background-color: #004206;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 2rem;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 button:hover {
-    background-color: #e53e3e;
-    transform: translateY(-2px);
+  background-color: #e53e3e;
+  transform: translateY(-2px);
 }
 #loadingMessage {
-    font-size: 1.2rem;
-    margin-top: 2rem;
+  font-size: 1.2rem;
+  margin-top: 2rem;
 }
 
 
 /* Otros estilos para la barra de título si los tienes */
 .custom-titlebar {
-    -webkit-app-region: drag;
-    height: 30px; /* Asegúrate de que esta altura sea consistente con el padding-top del body */
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
+  -webkit-app-region: drag;
+  height: 30px; /* Asegúrate de que esta altura sea consistente con el padding-top del body */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 .app-controls button {
-    -webkit-app-region: no-drag;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    padding: 0 10px;
-    cursor: pointer;
+  -webkit-app-region: no-drag;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 0 10px;
+  cursor: pointer;
 }
 
 .app-controls button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .app-controls .close-button:hover {
-    background-color: #e81123;
+  background-color: #e81123;
 }
