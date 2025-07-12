@@ -1,12 +1,11 @@
 const { handleUserLoginOrRegisterOnline, isDatabaseConnected, updateUserData } = require('../db/database');
 const { saveUserOffline, readOfflineUsers, deleteOfflineFile } = require('../db/offline');
-const fs = require('fs/promises');
+const fs = require('fs/promises'); // Esta línea ya debería estar, si no, agrégala.
 
 async function handleUserRegistration(userData, preferredMode) {
     const connected = await isDatabaseConnected();
     let finalMode = preferredMode;
 
-    // Si el usuario prefiere online pero no hay conexión, forzamos offline
     if (preferredMode === 'online' && !connected) {
         console.warn('Conexión online solicitada pero no disponible. Cambiando a modo offline.');
         finalMode = 'offline';
@@ -16,20 +15,18 @@ async function handleUserRegistration(userData, preferredMode) {
         const result = await handleUserLoginOrRegisterOnline(userData);
         if (result.success) {
             // Si el login/registro online fue exitoso, intentar sincronizar datos offline pendientes
-            await syncOfflineData();
+            await syncOfflineData(); // Llama a la función de sincronización aquí
         }
-        // Asegúrate de que el resultado siempre contenga `sincronizado: true` si se procesó online
         return { ...result, sincronizado: result.success };
     } else if (finalMode === 'offline') {
-        // Guarda los datos del usuario en el archivo JSON local.
         const result = await saveUserOffline(userData);
-        // Asegúrate de que el resultado siempre contenga `sincronizado: false` si se procesó offline
         return { ...result, sincronizado: false };
     } else {
-        return { success: false, message: 'Modo de operación no válido.', user: null, sincronizado: false };
+        return { success: false, message: 'Modo de operación no especificado o inválido.' };
     }
 }
 
+//Sincroniza los datos de usuarios almacenados offline a la base de datos MySQL.
 async function syncOfflineData() {
     const connected = await isDatabaseConnected();
     if (!connected) {
@@ -39,32 +36,48 @@ async function syncOfflineData() {
     try {
         const offlineUsers = await readOfflineUsers();
         if (offlineUsers.length === 0) {
+            console.log('No hay datos offline para sincronizar.');
             return { success: true, message: 'No hay datos offline para sincronizar.' };
         }
 
         console.log(`Sincronizando ${offlineUsers.length} usuarios offline a la base de datos MySQL...`);
+
         for (const user of offlineUsers) {
-            // Para cada usuario offline, intenta registrarlo/cargarlo en la base de datos
-            const loginResult = await handleUserLoginOrRegisterOnline({ usuarioNombre: user.usuarioNombre });
+            console.log(`Intentando sincronizar usuario: ${user.usuarioNombre}`);
 
-            if (loginResult.success && loginResult.user) {
+            const loginOrRegisterResult = await handleUserLoginOrRegisterOnline({
+                usuarioNombre: user.usuarioNombre,
 
-                const dataToUpdate = { ...user };
-                delete dataToUpdate.id_usuario;
-                delete dataToUpdate.usuarioNombre;
+            });
 
-                if (Object.keys(dataToUpdate).length > 0) { // Solo si hay datos para actualizar
-                    const updateResult = await updateUserData(loginResult.user.id_usuario, dataToUpdate);
+            if (loginOrRegisterResult.success && loginOrRegisterResult.user) {
+                const onlineUserId = loginOrRegisterResult.user.id_usuario;
+                console.log(`Usuario "${user.usuarioNombre}" encontrado/registrado online con ID: ${onlineUserId}.`);
+
+                const dataToUpdate = {
+                    selectStory: user.selectStory,
+                    genero: user.genero,
+                    decision: user.decision,      // Ya debe estar parseado como array/objeto en readOfflineUsers
+                    estado_final: user.estado_final
+                };
+
+                const filteredDataToUpdate = Object.fromEntries(
+                    Object.entries(dataToUpdate).filter(([_, value]) => value !== undefined)
+                );
+
+                if (Object.keys(filteredDataToUpdate).length > 0) {
+                    const updateResult = await updateUserData(onlineUserId, filteredDataToUpdate);
+
                     if (updateResult.success) {
-                        console.log(`Usuario "${user.usuarioNombre}" sincronizado/actualizado exitosamente.`);
+                        console.log(`Datos adicionales del usuario "${user.usuarioNombre}" actualizados exitosamente.`);
                     } else {
-                        console.warn(`Fallo al actualizar datos del usuario "${user.usuarioNombre}": ${updateResult.message}`);
+                        console.warn(`Fallo al actualizar datos adicionales del usuario "${user.usuarioNombre}": ${updateResult.message}`);
                     }
                 } else {
-                    console.log(`Usuario "${user.usuarioNombre}" ya sincronizado sin datos adicionales que actualizar.`);
+                    console.log(`No hay datos adicionales para actualizar para el usuario "${user.usuarioNombre}".`);
                 }
             } else {
-                console.warn(`Fallo al registrar/cargar usuario "${user.usuarioNombre}" durante la sincronización: ${loginResult.message}`);
+                console.warn(`Fallo al registrar/cargar usuario "${user.usuarioNombre}" durante la sincronización: ${loginOrRegisterResult.message}`);
             }
         }
 
@@ -78,10 +91,6 @@ async function syncOfflineData() {
     }
 }
 
-module.exports = {
-    handleUserRegistration,
-    syncOfflineData
-};
 module.exports = {
     handleUserRegistration,
     syncOfflineData

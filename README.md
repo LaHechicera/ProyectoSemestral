@@ -97,3 +97,4 @@ Si los pasos fueron seguidos correctamente la aplicación se iniciaria con exito
 |📂 Semana 6 | Desarrollo y planificación | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%206)|
 |📂 Semana 7 | Creación funciones para BD | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%207)|
 |📂 Semana 8 | Finalizacion con BD y API | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%208)|
+|📂 Semana 9 | Registro Microsoft Learn | [Ver](https://github.com/LaHechicera/ProyectoSemestral/tree/master/Avances/Semana%209)|
